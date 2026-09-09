@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Energy · NextGen STEM</title>
+<meta name="description" content="Renewable energy hardware for classrooms: solar, wind, electrolysis, storage and a microgrid controller that ties them together, all logging real data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' fill='%231a3a56'/><g fill='none' stroke='%232a9d9c' stroke-width='1.5'><ellipse cx='12' cy='12' rx='4.5' ry='10.2'/><ellipse cx='12' cy='12' rx='4.5' ry='10.2' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='4.5' ry='10.2' transform='rotate(120 12 12)'/></g><circle cx='12' cy='12' r='3' fill='%23f8836b'/></svg>">
+<noscript><style>.rv{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__in">
+    <a class="wordmark" href="index.html" aria-label="NextGen STEM, home">
+      <svg class="wordmark__mark" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.35">
+          <ellipse cx="12" cy="12" rx="4.5" ry="10.2"></ellipse>
+          <ellipse cx="12" cy="12" rx="4.5" ry="10.2" transform="rotate(60 12 12)"></ellipse>
+          <ellipse cx="12" cy="12" rx="4.5" ry="10.2" transform="rotate(120 12 12)"></ellipse>
+        </g>
+        <g fill="var(--gold)">
+          <circle cx="16.7" cy="5.3" r="1.3"></circle>
+          <circle cx="7.3" cy="5.3" r="1.3"></circle>
+          <circle cx="7.3" cy="18.7" r="1.3"></circle>
+          <circle cx="16.7" cy="18.7" r="1.3"></circle>
+        </g>
+        <circle cx="12" cy="12" r="3" fill="var(--coral)"></circle>
+      </svg>
+      NextGen&nbsp;<em>STEM</em>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="kits.html">Kits</a>
+      <a href="energy.html" aria-current="page">Energy</a>
+      <a href="competitions.html">Competitions</a>
+      <a href="apply.html">Apply</a>
+      <a href="library.html">Library <span class="soon">soon</span></a>
+      <span class="nav__cta"><a class="btn btn--ghost" href="index.html#contact">Get in touch</a></span>
+    </nav>
+
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="pagehead wrap">
+    <div class="grid">
+      <div class="pagehead__title">
+        <div class="crumb"><a href="index.html">Home</a> <span>/</span> <span>Energy</span></div>
+        <h1 class="h1">Renewables,<br>with the numbers<br>left in.</h1>
+        <p class="lede" style="max-width:44ch">
+          Five products that generate, store and spend real power at low
+          voltage. Every one logs what it did, so the lesson can end in an
+          argument about efficiency rather than a poster.
+        </p>
+      </div>
+      <div class="pagehead__note">
+        <dl class="spec" style="margin-top:0;border-top-color:var(--ink)">
+          <div><dt>Bus voltage</dt><dd>12 V DC</dd></div>
+          <div><dt>Logging</dt><dd>10 Hz, CSV over USB</dd></div>
+          <div><dt>Mains contact</dt><dd>None, anywhere</dd></div>
+          <div><dt>Warranty</dt><dd>3 years, parts sold separately</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- System diagram ---------------------------------------------------- -->
+  <section class="wrap section--tight rule-top">
+    <figure class="art-frame rv" style="padding:clamp(1.25rem,3vw,2.5rem)">
+      <svg viewBox="0 0 880 250" role="img" aria-label="System diagram: solar, wind and electrolysis feed a shared twelve volt bus, managed by a controller, into storage and loads">
+        <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+
+          <!-- PV -->
+          <path d="M40 78 L108 60 L146 78 L78 96 Z"></path>
+          <path d="M60 74 L96 84 M82 68 L118 78 M70 88 L106 78"></path>
+          <path d="M93 92 v34"></path>
+          <circle cx="26" cy="34" r="9"></circle>
+          <path d="M26 19 v-6 M26 49 v6 M11 34 h-6 M41 34 h6 M16 24 l-4-4 M36 44 l4 4"></path>
+
+          <!-- Wind -->
+          <path d="M262 126 v-56 M254 126 h16"></path>
+          <circle cx="262" cy="68" r="3.5"></circle>
+          <path d="M262 64 C262 46 268 34 282 27 C275 43 271 55 264 64"></path>
+          <path d="M265 70 C281 75 294 74 305 65 C289 61 277 61 267 66"></path>
+          <path d="M259 71 C251 86 249 99 255 113 C263 100 265 86 264 73"></path>
+
+          <!-- Electrolyser -->
+          <rect x="404" y="62" width="72" height="64" rx="3"></rect>
+          <path d="M422 62 v-14 M458 62 v-14"></path>
+          <circle cx="422" cy="42" r="7"></circle>
+          <circle cx="458" cy="42" r="7"></circle>
+          <path d="M420 82 h44 M420 96 h44 M420 110 h44" stroke-dasharray="3 4"></path>
+          <path d="M440 126 v0"></path>
+
+          <!-- Storage -->
+          <rect x="596" y="66" width="82" height="60" rx="3"></rect>
+          <path d="M614 60 v6 M660 60 v6"></path>
+          <path d="M610 96 h26 M623 84 v24 M646 96 h22"></path>
+
+          <!-- Load -->
+          <circle cx="800" cy="94" r="24"></circle>
+          <path d="M783 77 l34 34 M817 77 l-34 34"></path>
+          <path d="M800 118 v22"></path>
+
+          <!-- Bus -->
+          <path d="M40 168 h800" stroke-width="1.9"></path>
+          <path d="M93 126 v42 M262 126 v42 M440 126 v42 M637 126 v42 M800 140 v28"></path>
+
+          <!-- Controller -->
+          <rect x="368" y="192" width="144" height="44" rx="3"></rect>
+          <path d="M440 168 v24"></path>
+          <path d="M386 214 h18 m14 0 h18 m14 0 h18" stroke-dasharray="1 5"></path>
+
+          <!-- meters on the bus -->
+          <circle cx="176" cy="168" r="11"></circle>
+          <path d="M176 168 l7 -6"></path>
+          <circle cx="716" cy="168" r="11"></circle>
+          <path d="M716 168 l7 -6"></path>
+        </g>
+
+        <g fill="var(--ink-mute)" font-family="Archivo, sans-serif" font-size="9" letter-spacing="1.4">
+          <text x="40" y="116">HELIO</text>
+          <text x="238" y="146">GUST</text>
+          <text x="404" y="146">CELL</text>
+          <text x="596" y="146">STORE</text>
+          <text x="776" y="152">LOAD</text>
+          <text x="386" y="218">GRID CONTROLLER</text>
+          <text x="42" y="186">12 V SHARED BUS</text>
+        </g>
+      </svg>
+      <figcaption>Every product works alone. Together they are a microgrid with a storage problem.</figcaption>
+    </figure>
+  </section>
+
+  <!-- Products ---------------------------------------------------------- -->
+  <section class="wrap section--tight">
+    <div class="grid" style="margin-bottom:2.5rem">
+      <div class="split__left">
+        <span class="eyebrow">The line</span>
+        <h2 class="h2" style="margin-top:1rem">Five products</h2>
+      </div>
+      <div class="split__right">
+        <p class="prose">
+          Sold individually because most classrooms start with one. Each card
+          lists the questions the hardware is actually able to settle.
+          If a question isn't on the list, the product can't answer it honestly,
+          and we'd rather say so.
+        </p>
+      </div>
+    </div>
+
+    <div class="cards cards--2">
+
+      <article class="card rv">
+        <div class="card__top">
+          <div><span class="num">01</span><div class="card__name">Helio</div></div>
+          <span class="price">$95</span>
+        </div>
+        <p>
+          Two 6 V panels on a protractor mount, a pyranometer-style irradiance
+          sensor, and a switchable resistive load. Tilt, shade, series,
+          parallel: all four are one knob away.
+        </p>
+        <span class="eyebrow" style="margin-top:1.5rem">Questions it can settle</span>
+        <ol class="angles">
+          <li>What tilt actually maximises output, today, here?</li>
+          <li>How much does one shaded cell cost the whole string?</li>
+          <li>Where is the maximum power point, and does it move?</li>
+          <li>Series or parallel, and for which load?</li>
+        </ol>
+        <dl class="spec">
+          <div><dt>Output</dt><dd>2 × 6 V, 2 W</dd></div>
+          <div><dt>Sensors</dt><dd>V, I, irradiance, temp</dd></div>
+          <div><dt>Ages</dt><dd>12–18</dd></div>
+        </dl>
+        <div class="card__foot">
+          <span class="mute" style="font-size:.8125rem">Works indoors under a lamp</span>
+          <a class="link" href="index.html#contact">Order <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="card rv" data-delay="60">
+        <div class="card__top">
+          <div><span class="num">02</span><div class="card__name">Gust</div></div>
+          <span class="price">$180</span>
+        </div>
+        <p>
+          A bench turbine with a quick-release hub, three printed blade
+          profiles and a bag of blanks. A tachometer reads rotor speed while
+          the load bank reads what that speed is worth.
+        </p>
+        <span class="eyebrow" style="margin-top:1.5rem">Questions it can settle</span>
+        <ol class="angles">
+          <li>Do three blades beat five? At what wind speed?</li>
+          <li>What pitch angle stalls the rotor, and how suddenly?</li>
+          <li>Why does the best rotor make the worst generator?</li>
+          <li>Can a blade you designed beat one we printed?</li>
+        </ol>
+        <dl class="spec">
+          <div><dt>Rotor</dt><dd>240 mm swept</dd></div>
+          <div><dt>Blade sets</dt><dd>3 printed + 6 blanks</dd></div>
+          <div><dt>Ages</dt><dd>13–18</dd></div>
+        </dl>
+        <div class="card__foot">
+          <span class="mute" style="font-size:.8125rem">Desk fan is fine as a source</span>
+          <a class="link" href="index.html#contact">Order <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="card rv">
+        <div class="card__top">
+          <div><span class="num">03</span><div class="card__name">Cell</div></div>
+          <span class="price">$210</span>
+        </div>
+        <p>
+          A reversible PEM cell: put power in and get hydrogen and oxygen out,
+          then run it backwards and get some of the power back. The gap
+          between those two numbers is the entire lesson.
+        </p>
+        <span class="eyebrow" style="margin-top:1.5rem">Questions it can settle</span>
+        <ol class="angles">
+          <li>How much gas per coulomb, and does theory match?</li>
+          <li>What fraction of the energy comes back out?</li>
+          <li>Where does the missing energy go?</li>
+          <li>Can solar alone drive it, and for how long?</li>
+        </ol>
+        <dl class="spec">
+          <div><dt>Consumables</dt><dd>Distilled water only</dd></div>
+          <div><dt>Gas volume</dt><dd>2 × 30 mL graduated</dd></div>
+          <div><dt>Ages</dt><dd>14–18, supervised</dd></div>
+        </dl>
+        <div class="card__foot">
+          <span class="mute" style="font-size:.8125rem">Sealed cell · no gas storage</span>
+          <a class="link" href="index.html#contact">Order <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="card rv" data-delay="60">
+        <div class="card__top">
+          <div><span class="num">04</span><div class="card__name">Store</div></div>
+          <span class="price">$130</span>
+        </div>
+        <p>
+          Three storage technologies on one board
+          (supercapacitor, lithium iron phosphate, and a small sealed
+          lead-acid) behind a coulomb
+          counter, so they can be compared instead of described.
+        </p>
+        <span class="eyebrow" style="margin-top:1.5rem">Questions it can settle</span>
+        <ol class="angles">
+          <li>Which one charges fastest, and which one keeps the most?</li>
+          <li>What does a discharge curve actually look like?</li>
+          <li>How much capacity is lost after fifty cycles?</li>
+          <li>Which one would you put in a phone, and why not the others?</li>
+        </ol>
+        <dl class="spec">
+          <div><dt>Cells</dt><dd>3 chemistries, isolated</dd></div>
+          <div><dt>Metering</dt><dd>Coulomb counter, ±1%</dd></div>
+          <div><dt>Ages</dt><dd>13–18</dd></div>
+        </dl>
+        <div class="card__foot">
+          <span class="mute" style="font-size:.8125rem">Protection circuit on every cell</span>
+          <a class="link" href="index.html#contact">Order <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="card rv" style="grid-column:1/-1">
+        <div class="card__top">
+          <div><span class="num">05</span><div class="card__name">Grid</div></div>
+          <span class="price">$310</span>
+        </div>
+        <div class="grid" style="gap:var(--gap)">
+          <div class="split__left">
+            <p>
+              The controller that turns four separate experiments into one
+              system. Sources and loads clip onto a shared 12 V bus; the class
+              writes the rules for what gets powered when supply falls short.
+              It will happily let them make the wrong call and log the
+              consequences.
+            </p>
+            <p style="margin-top:1rem">
+              Rules are written in a plain text file on the device.
+              No app, no account, no cloud. It runs the same with the internet
+              unplugged.
+            </p>
+          </div>
+          <div class="split__right">
+            <span class="eyebrow">Questions it can settle</span>
+            <ol class="angles">
+              <li>Which load do you shed first when the sun goes in?</li>
+              <li>How big does storage need to be to survive a cloudy hour?</li>
+              <li>Is it cheaper to add a panel or add a battery?</li>
+              <li>What happens if two sources disagree about voltage?</li>
+            </ol>
+          </div>
+        </div>
+        <div class="card__foot">
+          <span class="mute" style="font-size:.8125rem">Ties in up to 6 sources and 4 loads · CSV export</span>
+          <a class="link" href="index.html#contact">Order <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Curriculum -------------------------------------------------------- -->
+  <section class="section section--deep" id="curriculum">
+    <div class="wrap">
+      <div class="grid" style="margin-bottom:2.5rem">
+        <div class="split__left">
+          <span class="eyebrow">For schools</span>
+          <h2 class="h2" style="margin-top:1rem">Curriculum fit</h2>
+        </div>
+        <div class="split__right">
+          <p class="prose">
+            We designed the hardware first and mapped it afterwards, honestly.
+            Where a product only partly covers a standard, the table
+            says so rather than stretching.
+          </p>
+        </div>
+      </div>
+
+      <div class="table-wrap rv">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Idea</th>
+              <th scope="col">Product</th>
+              <th scope="col">NGSS</th>
+              <th scope="col">What gets measured</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="topic">Conversion &amp; efficiency</span></td>
+              <td>Helio</td><td>HS-PS3-3</td>
+              <td>Electrical output against incident power, five tilt angles</td>
+            </tr>
+            <tr>
+              <td><span class="topic">Forces on a rotor</span></td>
+              <td>Gust</td><td>HS-PS2-1</td>
+              <td>Torque and rotor speed against blade pitch and count</td>
+            </tr>
+            <tr>
+              <td><span class="topic">Redox &amp; gas laws</span></td>
+              <td>Cell</td><td>HS-PS1-2</td>
+              <td>Gas volume produced per coulomb passed, versus predicted</td>
+            </tr>
+            <tr>
+              <td><span class="topic">Storing energy</span></td>
+              <td>Store</td><td>HS-PS3-1</td>
+              <td>Charge and discharge curves for three chemistries</td>
+            </tr>
+            <tr>
+              <td><span class="topic">Systems &amp; trade-offs</span></td>
+              <td>Grid</td><td>HS-ETS1-3</td>
+              <td>Load shed events, unserved energy, cost per kWh delivered</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid mt-3">
+        <div class="split__left">
+          <h3 class="h3">Safety, plainly</h3>
+        </div>
+        <div class="split__right">
+          <p class="prose" style="font-size:.9375rem">
+            Nothing in this line touches mains voltage. The bus runs at 12 V,
+            every battery is behind a protection circuit, the electrolyser is
+            sealed and stores no gas, and the wind platform is rated for a
+            desk fan rather than an open window. Full risk assessments ship
+            with every class set and will live in the Library.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot" id="contact">
+  <div class="wrap">
+    <div class="grid">
+      <div class="foot__brand">
+        <a class="wordmark" href="index.html">
+          <svg class="wordmark__mark" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.35">
+          <ellipse cx="12" cy="12" rx="4.5" ry="10.2"></ellipse>
+          <ellipse cx="12" cy="12" rx="4.5" ry="10.2" transform="rotate(60 12 12)"></ellipse>
+          <ellipse cx="12" cy="12" rx="4.5" ry="10.2" transform="rotate(120 12 12)"></ellipse>
+        </g>
+        <g fill="var(--gold)">
+          <circle cx="16.7" cy="5.3" r="1.3"></circle>
+          <circle cx="7.3" cy="5.3" r="1.3"></circle>
+          <circle cx="7.3" cy="18.7" r="1.3"></circle>
+          <circle cx="16.7" cy="18.7" r="1.3"></circle>
+        </g>
+        <circle cx="12" cy="12" r="3" fill="var(--coral)"></circle>
+      </svg>
+          NextGen&nbsp;<em>STEM</em>
+        </a>
+        <p class="foot__note">
+          Open-ended kits, renewable energy hardware and single-topic
+          competitions for students who want the deep end.
+        </p>
+      </div>
+      <div class="foot__col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="kits.html">Kits</a></li>
+          <li><a href="energy.html">Energy</a></li>
+          <li><a href="competitions.html">Competitions</a>
+      <a href="apply.html">Apply</a></li>
+          <li><a href="library.html">Library</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h4>For schools</h4>
+        <ul>
+          <li><a href="kits.html#classroom">Class sets</a></li>
+          <li><a href="energy.html#curriculum">Curriculum fit</a></li>
+          <li><a href="competitions.html#run">Host a round</a></li>
+          <li><a href="competitions.html#rules">Rules &amp; eligibility</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@nextgenstem.org">hello@nextgenstem.org</a></li>
+          <li><a href="mailto:schools@nextgenstem.org">schools@nextgenstem.org</a></li>
+          <li><a href="mailto:press@nextgenstem.org">press@nextgenstem.org</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bar">
+      <span>© 2026 NextGen STEM</span>
+      <span>Built in the open · Repairable by design</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js?v=8"></script>
+</body>
+</html>
