@@ -471,6 +471,16 @@ a { color: inherit; }
   gap: 1rem;
 }
 .price { font-family: var(--display); font-size: 1.25rem; font-weight: 600; letter-spacing: -.02em; }
+.kind {
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  padding-top: .35em;
+  text-align: right;
+  flex: none;
+}
 
 .spec { border-top: 1px solid var(--rule-soft); margin-top: 1.25rem; }
 .spec > div {
@@ -697,153 +707,20 @@ td .topic { font-family: var(--display); font-size: 1.0625rem; font-weight: 600;
   border: 0;
 }
 
-/* --- 18. Application form ------------------------------------------------ */
+/* --- 20. Application embed ----------------------------------------------- */
 
-.form { margin-top: clamp(2rem, 4vw, 3rem); max-width: 46rem; }
-
-.form fieldset {
-  border: 0;
-  padding: 0;
-  margin: 0 0 clamp(2rem, 4vw, 3rem);
-  border-top: 1px solid var(--rule);
-  padding-top: 1.5rem;
-}
-.form legend {
-  padding: 0;
-  font-size: .6875rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--coral-ink);
-  font-variant-numeric: tabular-nums;
-}
-.form fieldset > .hint {
-  font-size: .9375rem;
-  color: var(--ink-soft);
-  margin: .85rem 0 1.5rem;
-  max-width: 54ch;
-}
-
-.field { margin-bottom: 1.5rem; }
-.field > label,
-.field > .label {
-  display: block;
-  font-size: .875rem;
-  font-weight: 500;
-  margin-bottom: .5rem;
-}
-.field .req { color: var(--coral-ink); }
-.field .sub {
-  display: block;
-  font-size: .8125rem;
-  font-weight: 400;
-  color: var(--ink-mute);
-  margin-top: .2rem;
-}
-
-.field input[type="text"],
-.field input[type="email"],
-.field input[type="number"],
-.field input[type="url"],
-.field select,
-.field textarea {
-  width: 100%;
-  padding: .8em 1em;
+/* The application itself is a Jotform, framed to sit with the cards. The
+   embed handler script sets the iframe height to fit the form's content.  */
+.embed {
   border: 1px solid var(--rule);
   background: var(--card);
   border-radius: 3px;
-  outline-offset: 2px;
-  transition: border-color .2s var(--ease);
+  padding: .5rem;
+  overflow: hidden;
 }
-.field textarea { resize: vertical; min-height: 8.5rem; line-height: 1.55; }
-.field select { appearance: none; padding-right: 2.5em; cursor: pointer;
-  background-image: linear-gradient(45deg, transparent 50%, var(--ink-mute) 50%),
-                    linear-gradient(135deg, var(--ink-mute) 50%, transparent 50%);
-  background-position: calc(100% - 1.15em) 1.25em, calc(100% - .8em) 1.25em;
-  background-size: 6px 6px, 6px 6px;
-  background-repeat: no-repeat;
-}
-.field :is(input, select, textarea):focus { border-color: var(--teal); }
-.field :is(input, textarea)::placeholder { color: var(--ink-mute); }
-.field .count { font-size: .75rem; color: var(--ink-mute); margin-top: .4rem; text-align: right; }
+.embed iframe { display: block; width: 100%; }
 
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
-@media (max-width: 620px) { .field-row { grid-template-columns: 1fr; } }
-
-/* Track picker ------------------------------------------------------------ */
-
-.tracks { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
-@media (max-width: 720px) { .tracks { grid-template-columns: 1fr; } }
-
-.track { position: relative; }
-.track input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-  margin: 0;
-}
-.track span {
-  display: block;
-  border: 1px solid var(--rule);
-  background: var(--card);
-  border-radius: 3px;
-  padding: 1rem 1.1rem;
-  transition: border-color .2s var(--ease), background .2s var(--ease);
-}
-.track strong { display: block; font-size: .9375rem; font-weight: 600; }
-.track em {
-  display: block;
-  font-style: normal;
-  font-size: .8125rem;
-  color: var(--ink-soft);
-  margin-top: .35rem;
-  line-height: 1.5;
-}
-.track input:hover + span { border-color: var(--ink-mute); }
-.track input:checked + span { border-color: var(--teal); background: #f0faf9; }
-.track input:focus-visible + span { outline: 2px solid var(--teal); outline-offset: 2px; }
-
-/* Consent + submit -------------------------------------------------------- */
-
-.check { display: flex; gap: .7rem; align-items: flex-start; font-size: .9375rem; }
-.check input { margin: .35em 0 0; flex: none; accent-color: var(--teal); width: 1rem; height: 1rem; }
-
-.form__submit {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--ink);
-  padding-top: 1.75rem;
-}
-.form__submit .mute { font-size: .8125rem; max-width: 34ch; }
-
-.form-out {
-  margin-top: 1.5rem;
-  border: 1px solid var(--rule);
-  background: var(--paper-deep);
-  border-radius: 3px;
-  padding: 1.25rem;
-}
-.form-out h3 { margin-bottom: .5rem; }
-.form-out p { font-size: .875rem; color: var(--ink-soft); }
-.form-out textarea {
-  width: 100%;
-  margin-top: .85rem;
-  min-height: 11rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: .8125rem;
-  line-height: 1.6;
-  padding: .9em 1em;
-  border: 1px solid var(--rule);
-  border-radius: 3px;
-  background: var(--card);
-  resize: vertical;
-}
-.form-out .btn { margin-top: .85rem; }
-
-/* Timeline ---------------------------------------------------------------- */
+/* --- 21. Timeline -------------------------------------------------------- */
 
 .timeline { counter-reset: tl; }
 .timeline li {
@@ -871,3 +748,58 @@ td .topic { font-family: var(--display); font-size: 1.0625rem; font-weight: 600;
 .section--ink .timeline li { border-color: var(--hair-navy); }
 .section--ink .timeline p { color: var(--on-navy-soft); }
 .section--ink .timeline .when { color: var(--gold); }
+
+/* --- 22. Events ---------------------------------------------------------- */
+
+/* Empty state. Delete the .empty block on events.html once there is a
+   real <li class="event"> to show.                                         */
+.empty {
+  border: 1px dashed var(--rule);
+  border-radius: 3px;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  color: var(--ink-mute);
+  max-width: 40rem;
+}
+.empty svg { margin-bottom: 1.25rem; }
+.empty h3 { color: var(--ink); }
+.empty p { color: var(--ink-soft); margin-top: .5rem; max-width: 52ch; }
+
+.events { display: grid; gap: 0; }
+.event {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: var(--gap);
+  border-top: 1px solid var(--rule);
+  padding-block: 1.75rem;
+}
+.event:last-child { border-bottom: 1px solid var(--rule); }
+.event__date {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+  color: var(--ink);
+}
+.event__month {
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--coral-ink);
+}
+.event__day {
+  font-family: var(--display);
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -.03em;
+  margin-top: .25rem;
+}
+.event__body h3 { margin: .35rem 0 .5rem; }
+.event__body p { color: var(--ink-soft); font-size: .9375rem; }
+.event__body .spec { margin-top: 1rem; }
+.event__body .link { margin-top: 1rem; }
+@media (max-width: 620px) {
+  .event { grid-template-columns: 1fr; gap: .75rem; }
+  .event__date { flex-direction: row; align-items: baseline; gap: .5rem; }
+  .event__day { margin-top: 0; font-size: 1.75rem; }
+}

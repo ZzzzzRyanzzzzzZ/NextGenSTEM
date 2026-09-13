@@ -1,0 +1,40 @@
+Subject: You're in — NextGen STEM fellowship, cohort [01]
+
+Hi [First name],
+
+You're selected. Welcome to cohort [01] of the NextGen STEM fellowship, in [Field].
+
+What sold it was your answer to the third question — [one specific sentence
+about what they wrote; e.g. "asking why the panel current collapses faster
+than the voltage under shade is exactly the kind of question the kit is
+built to let you chase"]. That is the thing we were reading for.
+
+Here is everything that happens next, so there are no surprises:
+
+  1. Reply to this email with a postal address. That is the only admin.
+  2. Your [Kit name] kit ships on [date]. Postage is covered. Nothing to pay
+     on delivery.
+  3. Inside the box is your field's brief. In one line, it is:
+     [brief — e.g. "harvest power by day, store it, and run a load through
+     the night; report a real round-trip efficiency"]
+  4. Your build is due [date] — six weeks after the kit arrives. Send photos,
+     your numbers, and a page on what you tried that did not work. The
+     failures matter as much as the result.
+  5. Results for your field come back by [date], with written feedback for
+     every entrant.
+
+Two rules, and only two:
+  - Outside parts are allowed. If the idea needs a servo we did not send, go
+    and find a servo. Just tell us what you added.
+  - Your own work. A pair is fine (you said [you're applying alone / with
+    [partner]]); a parent building it is not.
+
+If anything changes on your end — you move, you lose interest, you break
+something you cannot replace — just say so. Nobody is chasing you, but we
+would rather know.
+
+Good luck. We are genuinely looking forward to seeing what comes back.
+
+[Your name]
+NextGen STEM
+https://zzzzzryanzzzzzz.github.io/NextGenSTEM/

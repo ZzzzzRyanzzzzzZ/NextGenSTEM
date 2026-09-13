@@ -1,0 +1,35 @@
+Subject: Your NextGen STEM application — not this cohort
+
+Hi [First name],
+
+Thank you for applying to the fellowship in [Field]. We are not able to
+offer you a place in cohort [01].
+
+We promised a reason rather than a form letter, so here it is:
+
+[Be specific and kind. One or two sentences about the part that was thin.
+Examples:
+  - "Your second answer told us what you would build but not why, and the
+    why is most of what we are reading for."
+  - "The third question — one you cannot answer yet — came back as a
+    question you already know the answer to. We want the one that is
+    actually bothering you."
+  - "This cohort in Structures was the most competitive of the six; your
+    application would have been selected in most of the others."]
+
+What would make the next one stronger:
+
+[One concrete thing. Examples:
+  - "Tell us about something that broke. A failed build says more than a
+    finished one."
+  - "Pick the field you actually want, not the one that looks easiest."
+  - "Write the third answer last, and make it the one you would be slightly
+    embarrassed to ask a teacher."]
+
+Applications stay open and roll into cohort [02]. Reapplying is normal, it
+counts in your favour, and you do not need to start from scratch — send the
+same application with the changes above and we will read it again.
+
+[Your name]
+NextGen STEM
+https://zzzzzryanzzzzzz.github.io/NextGenSTEM/apply.html
