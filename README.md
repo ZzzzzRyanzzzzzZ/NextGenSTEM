@@ -21,7 +21,7 @@ Then open <http://localhost:5178>. No build step; it is plain HTML, CSS and JS.
 |---|---|
 | `index.html` | Home |
 | `kits.html`, `energy.html`, `competitions.html`, `library.html` | The four product areas |
-| `apply.html` | The fellowship: six fields, the brief for each, the embedded Jotform application |
+| `apply.html` | The fellowship: six fields, the brief for each, and the button to the Jotform |
 | `events.html` | Upcoming events. Empty for now; an event template is commented in the source |
 | `404.html` | Served by GitHub Pages for missing paths (links are absolute for that reason) |
 | `css/style.css` | One stylesheet. Brand palette lives in the `:root` block at the top |
@@ -31,12 +31,12 @@ Then open <http://localhost:5178>. No build step; it is plain HTML, CSS and JS.
 
 ## Receiving applications
 
-The application on `apply.html` is a Jotform, embedded in an iframe:
-<https://form.jotform.com/262548966626170>. Submissions land in the Jotform
-account and are emailed from there; nothing on this site handles them. To
-change the questions, edit the form in Jotform and the page picks it up on
-its own. A plain link to the form sits beside the embed for anyone whose
-browser blocks iframes.
+The application is a Jotform: <https://form.jotform.com/262548966626170>.
+Every "Apply" button and link on the site opens it in a new tab; nothing is
+embedded and nothing on this site handles submissions. They land in the
+Jotform account and are emailed from there. To change the questions, edit
+the form in Jotform. To change where the buttons go, search the HTML for the
+form URL.
 
 Everything routes through that one form: kit applications, class-set
 requests, event sign-ups and venue offers. Every call to action on the site

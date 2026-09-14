@@ -707,19 +707,6 @@ td .topic { font-family: var(--display); font-size: 1.0625rem; font-weight: 600;
   border: 0;
 }
 
-/* --- 20. Application embed ----------------------------------------------- */
-
-/* The application itself is a Jotform, framed to sit with the cards. The
-   embed handler script sets the iframe height to fit the form's content.  */
-.embed {
-  border: 1px solid var(--rule);
-  background: var(--card);
-  border-radius: 3px;
-  padding: .5rem;
-  overflow: hidden;
-}
-.embed iframe { display: block; width: 100%; }
-
 /* --- 21. Timeline -------------------------------------------------------- */
 
 .timeline { counter-reset: tl; }
