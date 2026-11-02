@@ -1,82 +1,22 @@
 [
   {
-    "id": "cell-2026",
-    "date": "2026-10-03",
-    "topic": "The Cell",
+    "id": "b",
+    "date": "2026-12-26",
+    "topic": "Biology Competition",
     "field": "Biology",
-    "grades": "9–12",
-    "kit": "sense",
-    "status": "closed",
+    "grades": "10-12",
+    "kit": "",
+    "status": "soon",
     "note": ""
   },
   {
-    "id": "integrals-2026",
-    "date": "2026-11-14",
-    "topic": "Integrals",
-    "field": "Mathematics",
-    "grades": "10–12",
-    "kit": "",
-    "status": "open",
-    "note": ""
-  },
-  {
-    "id": "statics-2026",
-    "date": "2026-12-12",
-    "topic": "Static Equilibrium",
-    "field": "Physics",
-    "grades": "9–12",
-    "kit": "span",
-    "status": "soon",
-    "note": "Opens 6 Nov"
-  },
-  {
-    "id": "titration-2027",
-    "date": "2027-01-30",
-    "topic": "Titration",
-    "field": "Chemistry",
-    "grades": "9–12",
-    "kit": "sense",
-    "status": "soon",
-    "note": "Opens 26 Dec"
-  },
-  {
-    "id": "graphs-2027",
-    "date": "2027-03-06",
-    "topic": "Graph Theory",
-    "field": "Maths & CS",
-    "grades": "8–12",
-    "kit": "",
-    "status": "soon",
-    "note": "Opens 30 Jan"
-  },
-  {
-    "id": "orbits-2027",
-    "date": "2027-04-17",
-    "topic": "Orbits",
-    "field": "Physics",
-    "grades": "10–12",
-    "kit": "ray",
-    "status": "soon",
-    "note": "Opens 13 Mar"
-  },
-  {
-    "id": "primes-2026",
-    "date": "2026-05-02",
-    "topic": "Prime Numbers",
-    "field": "Mathematics",
-    "grades": "8–12",
-    "kit": "",
-    "status": "closed",
-    "note": "Closed · 1,140 entrants"
-  },
-  {
-    "id": "osmosis-2026",
-    "date": "2026-03-07",
-    "topic": "Osmosis",
+    "id": "biology-competition-copy",
+    "date": "2026-11-30",
+    "topic": "Chemistry Competition",
     "field": "Biology",
-    "grades": "7–11",
-    "kit": "cycle",
-    "status": "closed",
-    "note": "Closed · 812 entrants"
+    "grades": "10-12",
+    "kit": "",
+    "status": "soon",
+    "note": ""
   }
 ]
