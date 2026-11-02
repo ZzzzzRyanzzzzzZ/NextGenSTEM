@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "e",
+    "name": "Circuitry Kit",
+    "field": "Electronics",
+    "brief": "Resistors, Capacitators, Gears, motors, micro-controller",
+    "measure": "",
+    "active": false
+  }
+]
