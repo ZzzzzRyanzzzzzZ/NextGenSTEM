@@ -1,0 +1,8 @@
+[
+  { "id": "linkage", "name": "Linkage", "field": "Mechanisms",        "brief": "Move a 500 g load one metre across a table on stored energy alone. No motors, no batteries.", "measure": "Distance travelled per joule stored", "active": true },
+  { "id": "sense",   "name": "Sense",   "field": "Circuits & sensing", "brief": "Build an instrument that measures something you cannot see, and show that it agrees with a known reference.", "measure": "Agreement with the reference across the range", "active": true },
+  { "id": "helio",   "name": "Helio",   "field": "Renewable energy",   "brief": "Harvest power by day, store it, and run a load through the night. Report a real round-trip efficiency.", "measure": "Watt-hours delivered per watt-hour captured", "active": true },
+  { "id": "span",    "name": "Span",    "field": "Structures",         "brief": "Cross a 400 mm gap carrying as much as you can. Then load it until it breaks and film the failure.", "measure": "Grams carried per gram of structure", "active": true },
+  { "id": "ray",     "name": "Ray",     "field": "Optics",             "brief": "Form a readable image of a distant object, then tell us precisely what is limiting its sharpness.", "measure": "Resolved line pairs, and the honesty of the limit analysis", "active": true },
+  { "id": "cycle",   "name": "Cycle",   "field": "Growth systems",     "brief": "Keep a plant alive for six weeks inside a closed loop, logging every input you give it.", "measure": "Biomass gained per litre of water used", "active": true }
+]

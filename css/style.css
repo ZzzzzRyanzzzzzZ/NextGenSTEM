@@ -140,7 +140,7 @@ input { font: inherit; color: inherit; }
   font-size: clamp(1.125rem, 1.6vw, 1.375rem);
   line-height: 1.5;
   color: var(--ink-soft);
-  max-width: 34ch;
+  max-width: 44ch;
 }
 
 .body-lg { font-size: 1.125rem; line-height: 1.58; color: var(--ink-soft); }
@@ -688,6 +688,37 @@ td .topic { font-family: var(--display); font-size: 1.0625rem; font-weight: 600;
 }
 .skip:focus { left: 1rem; top: 1rem; }
 
+/* --- Spacing system ------------------------------------------------------
+   One rhythm for the three gaps that repeat on every page, so sections line
+   up instead of drifting by a few pixels each.                             */
+
+/* eyebrow -> heading: one gap, everywhere */
+.eyebrow + .h1,
+.eyebrow + .h2,
+.eyebrow + .display,
+.crumb + .h1 { margin-top: .9rem; }
+
+/* the intro row that opens a section, above its cards/table/timeline */
+.section-intro { margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem); }
+
+/* small print */
+.fine { font-size: .8125rem; color: var(--ink-mute); }
+.sm   { font-size: .9375rem; }
+
+.mb-1 { margin-bottom: .75rem; }
+.mb-2 { margin-bottom: 1.25rem; }
+.mb-3 { margin-bottom: 2rem; }
+
+/* repeated one-off roles, named so they stay in step */
+.eyebrow--mid   { margin-top: 1.5rem; }      /* second eyebrow inside a card */
+.note           { margin-top: .75rem; }      /* caption under a block */
+.spec--flush    { margin-top: 0; border-top-color: var(--ink); }
+.price--sm      { font-size: 1.125rem; }
+.card__name--sm { font-size: 1.5rem; }
+.pull + *, .pull { margin-top: 1.25rem; }
+.on-navy-item   { color: var(--on-navy-soft); border-bottom-color: var(--hair-navy); }
+.on-navy-item:last-child { border-bottom: 0; }
+
 .stack-sm > * + * { margin-top: .75rem; }
 .stack > * + * { margin-top: 1.25rem; }
 .mt-2 { margin-top: 2rem; }
@@ -789,4 +820,16 @@ td .topic { font-family: var(--display); font-size: 1.0625rem; font-weight: 600;
   .event { grid-template-columns: 1fr; gap: .75rem; }
   .event__date { flex-direction: row; align-items: baseline; gap: .5rem; }
   .event__day { margin-top: 0; font-size: 1.75rem; }
+}
+
+/* --- Kit chip (competition calendar) ------------------------------------- */
+.kit-chip {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 500;
+  padding: .25em .6em;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--card);
+  white-space: nowrap;
 }

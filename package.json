@@ -1,0 +1,13 @@
+{
+  "name": "nextgenstem",
+  "private": true,
+  "version": "1.0.0",
+  "description": "NextGen STEM site: static pages plus a small admin API.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "hash": "node scripts/hash-password.mjs"
+  }
+}
