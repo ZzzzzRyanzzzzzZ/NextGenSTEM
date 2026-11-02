@@ -563,16 +563,6 @@ td .topic { font-family: var(--display); font-size: 1.0625rem; font-weight: 600;
 
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); counter-reset: st; }
 .steps li { counter-increment: st; border-top: 1px solid var(--ink); padding-top: 1.1rem; }
-.steps li::before {
-  content: "Round " counter(st);
-  display: block;
-  font-size: .6875rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--coral-ink);
-  margin-bottom: .75rem;
-}
 .steps h3 { margin-bottom: .4rem; }
 .steps p { font-size: .9375rem; color: var(--ink-soft); }
 @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
@@ -726,7 +716,6 @@ td .topic { font-family: var(--display); font-size: 1.0625rem; font-weight: 600;
 
 /* --- 19. Additions ------------------------------------------------------- */
 
-.steps--plain li::before { content: none; }
 
 .vh {
   position: absolute;

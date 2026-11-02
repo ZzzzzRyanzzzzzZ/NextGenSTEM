@@ -82,6 +82,20 @@
     }).join('');
   }
 
+  /* --- next competition date (used on more than one page) ------------- */
+  function renderNext(rows) {
+    var el = document.querySelector('[data-content="next-comp"]');
+    if (!el) return;
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var next = rows.slice()
+      .sort(function (a, b) { return String(a.date).localeCompare(String(b.date)); })
+      .filter(function (r) {
+        var d = parseDate(r.date);
+        return d && d >= today && r.status !== 'closed';
+      })[0];
+    el.textContent = next ? fmtDate(next.date) : 'nothing scheduled';
+  }
+
   /* --- kit list --------------------------------------------------------- */
   function renderKits(kits) {
     var host = document.querySelector('[data-content="kits"]');
@@ -158,17 +172,19 @@
   var needs = {
     calendar: !!document.querySelector('[data-content="calendar"]'),
     kits:     !!document.querySelector('[data-content="kits"]'),
-    events:   !!document.querySelector('[data-content="events"]')
+    events:   !!document.querySelector('[data-content="events"]'),
+    nextComp: !!document.querySelector('[data-content="next-comp"]')
   };
-  if (!needs.calendar && !needs.kits && !needs.events) return;
+  if (!needs.calendar && !needs.kits && !needs.events && !needs.nextComp) return;
 
   var jobs = [load('kits')];
-  jobs.push(needs.calendar ? load('competitions') : Promise.resolve([]));
+  jobs.push((needs.calendar || needs.nextComp) ? load('competitions') : Promise.resolve([]));
   jobs.push(needs.events ? load('events') : Promise.resolve([]));
 
   Promise.all(jobs).then(function (res) {
     var kits = res[0], comps = res[1], events = res[2];
     if (needs.calendar) renderCalendar(comps, kits);
+    if (needs.nextComp) renderNext(comps);
     if (needs.kits) renderKits(kits);
     if (needs.events) renderEvents(events);
   }).catch(function (err) {
