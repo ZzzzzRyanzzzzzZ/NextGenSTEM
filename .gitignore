@@ -8,5 +8,5 @@ desktop.ini
 .idea/
 *.swp
 
-# Claude Code local config
+# Local tool config
 .claude/

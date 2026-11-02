@@ -8,6 +8,9 @@ import { requireSession } from './_auth.js';
 
 /* Only these paths may be written, whatever the request claims. */
 const ALLOWED = new Set([
+  'data/text.json',
+  'data/sections.json',
+  'data/pages.json',
   'data/kits.json',
   'data/competitions.json',
   'data/events.json'

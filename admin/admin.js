@@ -1,7 +1,12 @@
 /* NextGen STEM admin.
    ---------------------------------------------------------------------------
-   Builds every form from admin/schema.js, so adding a content type or a field
-   means editing that file only.
+   Builds every form from admin/schema.js, so adding a content type, a field
+   or a slot of editable text means editing that file only.
+
+   Two shapes of content are handled:
+     record types  a list you add to and delete from (competitions, sections,
+                   pages, events, kits)
+     kv types      a fixed set of named text slots (Site text)
 
    Signing in posts to /api/login, which checks the password on the server and
    sets a signed httpOnly cookie. Saving posts to /api/save, which commits to
@@ -19,8 +24,7 @@
 
   var state = {
     type: Object.keys(SCHEMA)[0],
-    data: {},        // type -> array of records
-    sha: {},         // type -> file sha from GitHub (for safe updates)
+    data: {},        // type -> array of records (kv types: [{key, value}])
     selected: null,  // index into current type
     dirty: {},       // type -> true
     user: null,      // signed-in name, or null
@@ -49,6 +53,43 @@
   function slug(s) {
     return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '').slice(0, 40) || ('item-' + Date.now().toString(36));
+  }
+
+  function isKv(type) { return SCHEMA[type].kind === 'kv'; }
+
+  /* Every slot of a kv type, flattened out of its groups. */
+  function slotsOf(type) {
+    var out = [];
+    (SCHEMA[type].groups || []).forEach(function (g) {
+      (g.slots || []).forEach(function (s) { out.push(s); });
+    });
+    return out;
+  }
+
+  function kvMap(type) {
+    var m = {};
+    (state.data[type] || []).forEach(function (r) {
+      if (r && r.key) m[r.key] = r.value;
+    });
+    return m;
+  }
+
+  function kvSet(type, key, value) {
+    var rows = state.data[type] || (state.data[type] = []);
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i] && rows[i].key === key) {
+        if (String(value).length) rows[i].value = value;
+        else rows.splice(i, 1);           // empty means "use the page default"
+        return;
+      }
+    }
+    if (String(value).length) rows.push({ key: key, value: value });
+  }
+
+  function countOf(type) {
+    var rows = state.data[type] || [];
+    if (!isKv(type)) return rows.length;
+    return rows.filter(function (r) { return r && String(r.value || '').length; }).length;
   }
 
   function anyDirty() { return Object.keys(state.dirty).some(function (k) { return state.dirty[k]; }); }
@@ -151,29 +192,39 @@
   /* ------------------------------------------------------------- render */
   function renderTypes() {
     $('#type-list').innerHTML = Object.keys(SCHEMA).map(function (t) {
-      var n = (state.data[t] || []).length;
       return '<li><button type="button" data-type="' + t + '"' +
              (t === state.type ? ' aria-current="true"' : '') + '>' +
              '<span>' + esc(SCHEMA[t].label) + (state.dirty[t] ? ' •' : '') + '</span>' +
-             '<span class="count">' + n + '</span></button></li>';
+             '<span class="count">' + countOf(t) + '</span></button></li>';
     }).join('');
+  }
+
+  function numeric(type, field) {
+    var def = (SCHEMA[type].fields || []).filter(function (f) { return f.name === field; })[0];
+    return !!def && def.type === 'number';
   }
 
   function sortedIndices(type) {
     var def = SCHEMA[type];
     var rows = state.data[type] || [];
     var idx = rows.map(function (_, i) { return i; });
-    if (def.sortBy) {
-      idx.sort(function (a, b) {
-        return String(rows[a][def.sortBy] || '').localeCompare(String(rows[b][def.sortBy] || ''));
-      });
-    }
+    if (!def.sortBy) return idx;
+    var num = numeric(type, def.sortBy);
+    idx.sort(function (a, b) {
+      var x = rows[a][def.sortBy], y = rows[b][def.sortBy];
+      if (num) return (Number(x) || 0) - (Number(y) || 0);
+      return String(x == null ? '' : x).localeCompare(String(y == null ? '' : y));
+    });
     return idx;
   }
 
   function renderList() {
     var def = SCHEMA[state.type];
+    document.body.classList.toggle('single-pane', isKv(state.type));
     $('#list-title').textContent = def.label;
+    $('#new-btn').hidden = isKv(state.type);
+    if (isKv(state.type)) { $('#record-list').innerHTML = ''; return; }
+
     var rows = state.data[state.type] || [];
     if (!rows.length) {
       $('#record-list').innerHTML = '<li class="empty-note">Nothing yet. Press <strong>+ New</strong>.</li>';
@@ -183,72 +234,124 @@
       var r = rows[i];
       var title = r[def.titleField] || '(untitled)';
       var sub = def.subtitleField ? (r[def.subtitleField] || '') : '';
+      var off = r.show === false ? '<span class="rflag">hidden</span>' : '';
       return '<li><button type="button" data-i="' + i + '"' +
              (state.selected === i ? ' aria-current="true"' : '') + '>' +
-             '<span class="rtitle">' + esc(title) + '</span>' +
+             '<span class="rtitle">' + esc(title) + off + '</span>' +
              (sub ? '<span class="rsub">' + esc(sub) + '</span>' : '') +
              '</button></li>';
     }).join('');
   }
 
   function optionsFor(field) {
-    if (field.optionsFrom) {
-      var other = SCHEMA[field.optionsFrom];
-      return (state.data[field.optionsFrom] || []).map(function (r) {
-        return { value: r.id || r[other.titleField], label: r[other.titleField] };
-      });
-    }
-    return (field.options || []).map(function (o) {
+    var out = (field.options || []).map(function (o) {
       return typeof o === 'string' ? { value: o, label: o } : o;
     });
+    var from = field.optionsFrom;
+    if (!from) return out;
+    if (typeof from === 'string') from = { type: from };
+    var other = SCHEMA[from.type];
+    if (!other) return out;
+    (state.data[from.type] || []).forEach(function (r) {
+      var v = r[from.value || 'id'] || r[other.titleField];
+      var l = r[from.label || other.titleField] || v;
+      if (!v) return;
+      out.push({ value: (from.prefix || '') + v, label: l });
+    });
+    return out;
+  }
+
+  /* One form control. `v` is the current value, `name` the data key. */
+  function control(f, v, name) {
+    var id = 'f-' + name;
+    var star = f.required ? ' <span class="req-star">*</span>' : '';
+    var help = f.help ? '<span class="afield__help">' + esc(f.help) + '</span>' : '';
+    var ph = f.placeholder ? ' placeholder="' + esc(f.placeholder) + '"' : '';
+
+    if (f.type === 'checkbox') {
+      // Not set yet means "whatever this field defaults to", which is on
+      // unless the schema says otherwise.
+      var on = (v == null || v === '') ? (f.default !== false) : !!v;
+      return '<label class="afield afield--check">' +
+        '<input type="checkbox" id="' + id + '" data-f="' + esc(name) + '"' +
+        (on ? ' checked' : '') + '>' +
+        '<span class="afield__label" style="margin:0">' + esc(f.label) + '</span></label>' + help;
+    }
+    if (f.type === 'textarea') {
+      return '<label class="afield"><span class="afield__label">' + esc(f.label) + star + '</span>' +
+        '<textarea id="' + id + '" data-f="' + esc(name) + '"' + ph + '>' + esc(v) + '</textarea>' +
+        help + '</label>';
+    }
+    if (f.type === 'select') {
+      var opts = optionsFor(f).map(function (o) {
+        return '<option value="' + esc(o.value) + '"' +
+               (String(v) === String(o.value) ? ' selected' : '') + '>' + esc(o.label) + '</option>';
+      }).join('');
+      return '<label class="afield"><span class="afield__label">' + esc(f.label) + star + '</span>' +
+        '<select id="' + id + '" data-f="' + esc(name) + '">' +
+        '<option value="">' + (f.required ? 'Choose…' : 'None') + '</option>' + opts +
+        '</select>' + help + '</label>';
+    }
+    return '<label class="afield"><span class="afield__label">' + esc(f.label) + star + '</span>' +
+      '<input type="' + esc(f.type || 'text') + '" id="' + id + '" data-f="' + esc(name) + '" value="' +
+      esc(v) + '"' + ph + '>' + help + '</label>';
+  }
+
+  function renderKvEditor() {
+    var def = SCHEMA[state.type];
+    var vals = kvMap(state.type);
+    var body = (def.groups || []).map(function (g) {
+      return '<fieldset class="agroup"><legend>' + esc(g.label) + '</legend>' +
+        (g.slots || []).map(function (s) {
+          return control(s, vals[s.key] == null ? '' : vals[s.key], s.key);
+        }).join('') + '</fieldset>';
+    }).join('');
+
+    $('#editor').innerHTML =
+      '<div class="aedit__head"><h2 class="h3">' + esc(def.label) + '</h2>' +
+      '<a class="fine link" href="/" target="_blank" rel="noopener">View the site</a></div>' +
+      (def.blurb ? '<p class="ablurb">' + def.blurb + '</p>' : '') +
+      '<form id="rec-form" autocomplete="off">' + body + '</form>';
+  }
+
+  function previewHref(def, rec) {
+    if (!def.previewPath) return '';
+    var s = rec[def.previewPath];
+    return s ? '/p/' + encodeURIComponent(s) : '';
   }
 
   function renderEditor() {
+    if (isKv(state.type)) return renderKvEditor();
+
     var host = $('#editor');
+    var def = SCHEMA[state.type];
     if (state.selected === null) {
-      host.innerHTML = '<p class="placeholder">Pick a record on the left, or press <strong>+ New</strong>.</p>';
+      host.innerHTML = (def.blurb ? '<p class="ablurb">' + def.blurb + '</p>' : '') +
+        '<p class="placeholder">Pick one on the left, or press <strong>+ New</strong>.</p>';
       return;
     }
-    var def = SCHEMA[state.type];
     var rec = state.data[state.type][state.selected];
     if (!rec) { state.selected = null; return renderEditor(); }
 
     var fields = def.fields.map(function (f) {
-      var v = rec[f.name];
-      var id = 'f-' + f.name;
-      var star = f.required ? ' <span class="req-star">*</span>' : '';
-      var help = f.help ? '<span class="afield__help">' + esc(f.help) + '</span>' : '';
-      var ph = f.placeholder ? ' placeholder="' + esc(f.placeholder) + '"' : '';
-
-      if (f.type === 'checkbox') {
-        return '<label class="afield afield--check">' +
-          '<input type="checkbox" id="' + id + '" data-f="' + f.name + '"' + (v ? ' checked' : '') + '>' +
-          '<span class="afield__label" style="margin:0">' + esc(f.label) + '</span></label>' + help;
-      }
-      if (f.type === 'textarea') {
-        return '<label class="afield"><span class="afield__label">' + esc(f.label) + star + '</span>' +
-          '<textarea id="' + id + '" data-f="' + f.name + '"' + ph + '>' + esc(v) + '</textarea>' + help + '</label>';
-      }
-      if (f.type === 'select') {
-        var opts = optionsFor(f).map(function (o) {
-          return '<option value="' + esc(o.value) + '"' + (String(v) === String(o.value) ? ' selected' : '') + '>' +
-                 esc(o.label) + '</option>';
-        }).join('');
-        return '<label class="afield"><span class="afield__label">' + esc(f.label) + star + '</span>' +
-          '<select id="' + id + '" data-f="' + f.name + '">' +
-          '<option value="">' + (f.required ? 'Choose…' : 'None') + '</option>' + opts +
-          '</select>' + help + '</label>';
-      }
-      return '<label class="afield"><span class="afield__label">' + esc(f.label) + star + '</span>' +
-        '<input type="' + esc(f.type || 'text') + '" id="' + id + '" data-f="' + f.name + '" value="' + esc(v) + '"' + ph + '>' +
-        help + '</label>';
+      return control(f, rec[f.name], f.name);
     }).join('');
 
+    var href = previewHref(def, rec);
+    var order = def.orderField
+      ? '<button id="up-btn" class="btn btn--ghost btn--sm" type="button">Move up</button>' +
+        '<button id="down-btn" class="btn btn--ghost btn--sm" type="button">Move down</button>'
+      : '';
+
     host.innerHTML =
-      '<div class="aedit__head"><h2 class="h3">' + esc(rec[def.titleField] || 'New ' + def.label.toLowerCase()) + '</h2>' +
-      '<span class="fine">id: ' + esc(rec.id || 'not set') + '</span></div>' +
+      '<div class="aedit__head"><h2 class="h3">' +
+        esc(rec[def.titleField] || 'New ' + def.label.toLowerCase().replace(/s$/, '')) + '</h2>' +
+      (href
+        ? '<a class="fine link" href="' + esc(href) + '" target="_blank" rel="noopener">View page</a>'
+        : '<span class="fine">id: ' + esc(rec.id || 'not set') + '</span>') +
+      '</div>' +
       '<form id="rec-form" autocomplete="off">' + fields + '</form>' +
-      '<div class="aedit__foot">' +
+      '<div class="aedit__foot">' + order +
         '<button id="dup-btn" class="btn btn--ghost btn--sm" type="button">Duplicate</button>' +
         '<button id="del-btn" class="btn btn--ghost btn--sm btn--danger" type="button">Delete</button>' +
       '</div>';
@@ -273,38 +376,86 @@
   });
 
   $('#new-btn').addEventListener('click', function () {
+    if (isKv(state.type)) return;
     var def = SCHEMA[state.type];
+    var rows = state.data[state.type];
     var rec = { id: '' };
-    def.fields.forEach(function (f) { rec[f.name] = f.type === 'checkbox' ? true : ''; });
-    state.data[state.type].push(rec);
-    state.selected = state.data[state.type].length - 1;
+    def.fields.forEach(function (f) {
+      rec[f.name] = f.type === 'checkbox' ? (f.default !== false)
+                  : (f.type === 'number' ? 0 : '');
+    });
+    if (def.orderField) {
+      rec[def.orderField] = rows.reduce(function (m, r) {
+        return Math.max(m, Number(r[def.orderField]) || 0);
+      }, 0) + 1;
+    }
+    rows.push(rec);
+    state.selected = rows.length - 1;
     markDirty(state.type);
     renderAll();
   });
 
-  // live-edit the selected record
+  // live-edit the selected record, or the matching text slot
   $('#editor').addEventListener('input', function (e) {
     var el = e.target.closest('[data-f]');
-    if (!el || state.selected === null) return;
+    if (!el) return;
     var def = SCHEMA[state.type];
+
+    if (isKv(state.type)) {
+      kvSet(state.type, el.dataset.f, el.type === 'checkbox' ? el.checked : el.value);
+      markDirty(state.type);
+      renderTypes();
+      return;
+    }
+
+    if (state.selected === null) return;
     var rec = state.data[state.type][state.selected];
-    rec[el.dataset.f] = el.type === 'checkbox' ? el.checked : el.value;
+    var val = el.type === 'checkbox' ? el.checked
+            : (el.type === 'number' ? (el.value === '' ? '' : Number(el.value)) : el.value);
+    rec[el.dataset.f] = val;
     if (!rec.id && el.dataset.f === def.titleField) rec.id = slug(el.value);
+    if (def.previewPath && el.dataset.f === def.previewPath) rec[def.previewPath] = slug(el.value);
     markDirty(state.type);
     // Update the header in place rather than re-rendering the form, which
     // would throw away the caret mid-word.
     var head = document.querySelector('.aedit__head .h3');
-    var idEl = document.querySelector('.aedit__head .fine');
-    if (head) head.textContent = rec[def.titleField] || 'New ' + def.label.toLowerCase();
-    if (idEl) idEl.textContent = 'id: ' + (rec.id || 'not set');
+    if (head) head.textContent = rec[def.titleField] || 'New ' + def.label.toLowerCase().replace(/s$/, '');
     renderTypes(); renderList();
   });
 
+  /* On leaving a field, redraw the form once. Tidying a value mid-keystroke
+     would fight the caret, so anything normalised (an address turned into
+     lower case and dashes) only shows once the field is done with. */
+  $('#editor').addEventListener('change', function (e) {
+    if (isKv(state.type) || state.selected === null) return;
+    if (!e.target.closest('[data-f]')) return;
+    renderEditor();
+  });
+
+  /* Renumber 1..n in the current sort order, then swap with the neighbour. */
+  function move(dir) {
+    var def = SCHEMA[state.type];
+    var rows = state.data[state.type];
+    var order = sortedIndices(state.type);
+    order.forEach(function (i, n) { rows[i][def.orderField] = n + 1; });
+    var at = order.indexOf(state.selected);
+    var to = at + dir;
+    if (at < 0 || to < 0 || to >= order.length) return;
+    var a = rows[order[at]], b = rows[order[to]];
+    var tmp = a[def.orderField];
+    a[def.orderField] = b[def.orderField];
+    b[def.orderField] = tmp;
+    markDirty(state.type);
+    renderAll();
+  }
+
   $('#editor').addEventListener('click', function (e) {
+    if (isKv(state.type) || state.selected === null) return;
+    var def = SCHEMA[state.type];
+
     if (e.target.id === 'del-btn') {
-      var def = SCHEMA[state.type];
       var rec = state.data[state.type][state.selected];
-      if (!confirm('Delete "' + (rec[def.titleField] || 'this record') + '"? This cannot be undone here.')) return;
+      if (!confirm('Delete "' + (rec[def.titleField] || 'this one') + '"? This cannot be undone here.')) return;
       state.data[state.type].splice(state.selected, 1);
       state.selected = null;
       markDirty(state.type);
@@ -312,12 +463,15 @@
     }
     if (e.target.id === 'dup-btn') {
       var copy = JSON.parse(JSON.stringify(state.data[state.type][state.selected]));
-      copy.id = slug((copy[SCHEMA[state.type].titleField] || 'copy') + '-copy');
+      copy.id = slug((copy[def.titleField] || 'copy') + '-copy');
+      if (def.previewPath) copy[def.previewPath] = slug((copy[def.previewPath] || 'copy') + '-copy');
       state.data[state.type].push(copy);
       state.selected = state.data[state.type].length - 1;
       markDirty(state.type);
       renderAll();
     }
+    if (e.target.id === 'up-btn') move(-1);
+    if (e.target.id === 'down-btn') move(1);
   });
 
   /* ---------------------------------------------------------- connection */
@@ -381,6 +535,30 @@
     return JSON.stringify(state.data[type], null, 2) + '\n';
   }
 
+  /* Catch the mistakes that would show up as a broken page, not as an error. */
+  function problems() {
+    var out = [];
+    Object.keys(SCHEMA).forEach(function (t) {
+      var def = SCHEMA[t];
+      if (isKv(t)) return;
+      var seen = {};
+      (state.data[t] || []).forEach(function (r) {
+        (def.fields || []).forEach(function (f) {
+          if (f.required && !String(r[f.name] == null ? '' : r[f.name]).length) {
+            out.push(def.label + ': one entry has no ' + f.label.toLowerCase() + '.');
+          }
+        });
+        if (def.previewPath) {
+          var s = r[def.previewPath];
+          if (s && seen[s]) out.push(def.label + ': two pages share the address "' + s + '".');
+          if (s) seen[s] = true;
+        }
+      });
+    });
+    // De-duplicate, so ten empty rows do not produce ten identical lines.
+    return out.filter(function (m, i) { return out.indexOf(m) === i; });
+  }
+
   function downloadAll() {
     changedTypes().forEach(function (t, i) {
       setTimeout(function () {
@@ -421,7 +599,7 @@
       (out.body.written || []).forEach(function (path) {
         Object.keys(SCHEMA).forEach(function (k) { if (SCHEMA[k].file === path) state.dirty[k] = false; });
       });
-      clearDraft();
+      if (!anyDirty()) clearDraft();
       renderTypes();
       toast('Published. The site rebuilds in a minute or so.');
     }).catch(function (err) {
@@ -433,6 +611,9 @@
 
   $('#save-btn').addEventListener('click', function () {
     if (!changedTypes().length) return;
+    var bad = problems();
+    if (bad.length && !confirm('Before publishing:\n\n' + bad.join('\n') +
+        '\n\nPublish anyway?')) return;
     if (state.user) publish();
     else downloadAll();
   });

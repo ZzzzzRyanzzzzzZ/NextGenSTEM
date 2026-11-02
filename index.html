@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=9">
+<link rel="stylesheet" href="css/style.css?v=11">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' fill='%231a3a56'/><g fill='none' stroke='%232a9d9c' stroke-width='1.5'><ellipse cx='12' cy='12' rx='4.5' ry='10.2'/><ellipse cx='12' cy='12' rx='4.5' ry='10.2' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='4.5' ry='10.2' transform='rotate(120 12 12)'/></g><circle cx='12' cy='12' r='3' fill='%23f8836b'/></svg>">
 <noscript><style>.rv{opacity:1;transform:none}</style></noscript>
 </head>
@@ -50,7 +50,8 @@
     <nav class="nav" id="nav" aria-label="Primary">
       <a href="competitions.html">Competitions</a>
       <a href="events.html">Events</a>
-      <span class="nav__cta"><a class="btn btn--ghost" href="https://form.jotform.com/262548966626170" target="_blank" rel="noopener">Apply now</a></span>
+      <span class="nav__extra" data-content="nav-extra"></span>
+      <span class="nav__cta"><a class="btn btn--ghost" href="https://form.jotform.com/262548966626170" target="_blank" rel="noopener" data-text="site.cta.label" data-text-href="site.cta.url">Register</a></span>
     </nav>
 
     <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">
@@ -65,13 +66,14 @@
   <section class="hero wrap">
     <div class="grid">
       <div class="hero__head">
-        <span class="eyebrow rv">Independent · Making things since 2024</span>
-        <h1 class="display rv" data-delay="60">
+        <span class="eyebrow rv" data-text="home.eyebrow">Independent · Making things since 2024</span>
+        <h1 class="display rv" data-delay="60" data-text="home.hero.title">
           Free STEM contests.<br>We hand you the <span class="serif-it accent">kit</span>.
         </h1>
         <div class="hero__sub rv" data-delay="140">
-          <p class="lede">
-            You get a box of parts and ninety minutes. No instructions. Nothing to buy, nothing to bring.
+          <p class="lede" data-text="home.hero.lede">
+            You get a box of parts and ninety minutes. No instructions.
+            Nothing to buy, nothing to bring.
           </p>
           <div class="hero__actions">
             <a class="btn btn--solid" href="#how">How it works <span class="arw" aria-hidden="true">→</span></a>
@@ -83,7 +85,6 @@
       <div class="hero__side rv" data-delay="220">
         <nav class="index-list" aria-label="What we make">
           <a href="competitions.html"><span class="num">01</span> Competitions <span data-content="next-comp">see dates</span></a>
-          <a href="apply.html"><span class="num">02</span> Free-kit fellowship <span>open now</span></a>
         </nav>
       </div>
     </div>
@@ -116,11 +117,12 @@
     <div class="grid section-intro">
       <div class="split__left">
         <span class="eyebrow">How it works</span>
-        <h2 class="h2">Turn up.<br>We hand you<br>the <span class="serif-it accent">kit</span>.</h2>
+        <h2 class="h2" data-text="home.how.title">Turn up.<br>We hand you<br>the <span class="serif-it accent">kit</span>.</h2>
       </div>
       <div class="split__right">
-        <p class="prose">
-          Everyone in your field gets the same box on the day. What you build with it is the contest. The box is yours to keep.
+        <p class="prose" data-text="home.how.lede">
+          Everyone in your field gets the same box on the day. What you
+          build with it is the contest. The box is yours to keep.
         </p>
       </div>
     </div>
@@ -233,7 +235,7 @@
       <div class="grid section-intro">
         <div class="split__left">
           <span class="eyebrow">The argument</span>
-          <p class="pull">
+          <p class="pull" data-text="home.pull">
             Instructions tell you someone already knows the answer.
           </p>
         </div>
@@ -290,56 +292,8 @@
     </div>
   </section>
 
-  <!-- 02 Fellowship ----------------------------------------------------- -->
-  <section class="section" id="fellowship">
-    <div class="wrap">
-      <div class="grid section-intro">
-        <div class="split__left">
-          <span class="eyebrow">02 · The fellowship</span>
-          <h2 class="h2">Free kit.<br>Build us <span class="serif-it accent">something</span>.</h2>
-        </div>
-        <div class="split__right">
-          <div class="prose">
-            <p>
-              Money should not decide who gets to try this. Apply, and we send you a kit for free with one brief to answer.
-            </p>
-            <p>
-              Six weeks later you send back what you made, including what went wrong. Extra parts are allowed.
-            </p>
-          </div>
-          <div class="tag-row">
-            <span class="tag">Free kit</span>
-            <span class="tag">Free to apply</span>
-            <span class="tag">Six fields</span>
-            <span class="tag">Judged in-field</span>
-            <span class="tag">Ages 11–18</span>
-          </div>
-          <a class="link" href="https://form.jotform.com/262548966626170" target="_blank" rel="noopener">Apply for cohort 01 <span class="arw" aria-hidden="true">&rarr;</span></a>
-        </div>
-      </div>
-
-      <div class="cards cards--3 rv">
-        <div class="card">
-          <h3 class="h3">Selected, not sold to</h3>
-          <p>
-            A person reads every application and replies with a reason. No fee, no grades, no reference letter.
-          </p>
-        </div>
-        <div class="card">
-          <h3 class="h3">A brief, not a manual</h3>
-          <p>
-            One rule and one thing to measure. The rest is yours to work out.
-          </p>
-        </div>
-        <div class="card">
-          <h3 class="h3">Your own field</h3>
-          <p>
-            Each field is judged on its own, so a spectrometer never loses to a bridge.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Sections added through the admin land here. -->
+  <div data-content="sections" data-page="home"></div>
 
 </main>
 
@@ -365,17 +319,17 @@
       </svg>
           NextGen&nbsp;<em>STEM</em>
         </a>
-        <p class="foot__note">
-          Free in-person STEM competitions and a free-kit fellowship.
+        <p class="foot__note" data-text="site.footnote">
+          Free in-person STEM competitions. One topic, ninety minutes,
+          and the numbers decide it.
         </p>
       </div>
 
       <div class="foot__col">
-        <h4>Products</h4>
+        <h4>What we do</h4>
         <ul>
           <li><a href="competitions.html">Competitions</a></li>
           <li><a href="events.html">Events</a></li>
-          <li><a href="https://form.jotform.com/262548966626170" target="_blank" rel="noopener">Apply for a kit</a></li>
         </ul>
       </div>
 
@@ -391,7 +345,6 @@
         <h4>Contact</h4>
         <ul>
           <li><a href="mailto:nextgenstem42@gmail.com">nextgenstem42@gmail.com</a></li>
-          <li><a href="https://form.jotform.com/262548966626170" target="_blank" rel="noopener">Apply for a fellowship</a></li>
         </ul>
       </div>
     </div>
@@ -403,7 +356,7 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=9"></script>
-<script src="js/content.js?v=10"></script>
+<script src="js/main.js?v=11"></script>
+<script src="js/content.js?v=11"></script>
 </body>
 </html>

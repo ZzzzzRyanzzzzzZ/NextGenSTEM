@@ -44,45 +44,34 @@
   }
 
   /* Reveal on first view -------------------------------------------------- */
-  var targets = document.querySelectorAll('.rv');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io = null;
 
-  if (!targets.length) return;
-
-  if (reduced || !('IntersectionObserver' in window)) {
-    targets.forEach(function (el) { el.classList.add('in'); });
-    return;
+  if (!reduced && 'IntersectionObserver' in window) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var delay = Number(el.dataset.delay || 0);
+        setTimeout(function () { el.classList.add('in'); }, delay);
+        io.unobserve(el);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
   }
 
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      var el = entry.target;
-      var delay = Number(el.dataset.delay || 0);
-      setTimeout(function () { el.classList.add('in'); }, delay);
-      io.unobserve(el);
+  /* Called again by content.js once it has drawn anything from /data, so
+     admin-added sections fade in the same way the built-in ones do. */
+  function watchReveals() {
+    var targets = document.querySelectorAll('.rv:not(.in):not([data-watched])');
+    Array.prototype.forEach.call(targets, function (el) {
+      el.setAttribute('data-watched', '');
+      if (io) io.observe(el);
+      else el.classList.add('in');
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  }
 
-  targets.forEach(function (el) { io.observe(el); });
-})();
+  watchReveals();
 
-/* Waiting-list forms. No backend is wired up yet, so this only acknowledges
-   the submission locally so the page never lies about what happened.       */
-(function () {
-  'use strict';
-
-  document.querySelectorAll('form[data-signup]').forEach(function (form) {
-    var note = form.parentElement.querySelector('.form-note');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var input = form.querySelector('input[type="email"]');
-      if (!input || !input.value.trim()) return;
-      if (note) {
-        note.textContent =
-          'Thanks, ' + input.value.trim() + ' is on the list. (Demo site: nothing is sent yet.)';
-      }
-      form.reset();
-    });
-  });
+  window.NGS = window.NGS || {};
+  window.NGS.watchReveals = watchReveals;
 })();

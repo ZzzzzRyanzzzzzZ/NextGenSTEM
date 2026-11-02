@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=9">
+<link rel="stylesheet" href="css/style.css?v=11">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' fill='%231a3a56'/><g fill='none' stroke='%232a9d9c' stroke-width='1.5'><ellipse cx='12' cy='12' rx='4.5' ry='10.2'/><ellipse cx='12' cy='12' rx='4.5' ry='10.2' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='4.5' ry='10.2' transform='rotate(120 12 12)'/></g><circle cx='12' cy='12' r='3' fill='%23f8836b'/></svg>">
 <noscript><style>.rv{opacity:1;transform:none}</style></noscript>
 </head>
@@ -50,7 +50,8 @@
     <nav class="nav" id="nav" aria-label="Primary">
       <a href="competitions.html" aria-current="page">Competitions</a>
       <a href="events.html">Events</a>
-      <span class="nav__cta"><a class="btn btn--ghost" href="https://form.jotform.com/262548966626170" target="_blank" rel="noopener">Apply now</a></span>
+      <span class="nav__extra" data-content="nav-extra"></span>
+      <span class="nav__cta"><a class="btn btn--ghost" href="https://form.jotform.com/262548966626170" target="_blank" rel="noopener" data-text="site.cta.label" data-text-href="site.cta.url">Register</a></span>
     </nav>
 
     <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">
@@ -65,9 +66,10 @@
     <div class="grid">
       <div class="pagehead__title">
         <div class="crumb"><a href="index.html">Home</a> <span>/</span> <span>Competitions</span></div>
-        <h1 class="h1">One topic.<br>Ninety <span class="serif-it accent">minutes</span>.</h1>
-        <p class="lede">
-          Not biology, the cell. Not calculus, integrals. One topic, ninety minutes, in person.
+        <h1 class="h1" data-text="comp.title">One topic.<br>Ninety <span class="serif-it accent">minutes</span>.</h1>
+        <p class="lede" data-text="comp.lede">
+          Not biology, the cell. Not calculus, integrals. One topic, ninety
+          minutes, in person.
         </p>
         <div class="hero__actions mt-2">
           <a class="btn btn--solid" href="#calendar">See the calendar <span class="arw" aria-hidden="true">→</span></a>
@@ -217,6 +219,9 @@
     </div>
   </section>
 
+  <!-- Sections added through the admin land here. -->
+  <div data-content="sections" data-page="competitions"></div>
+
 </main>
 
 <footer class="foot" id="contact">
@@ -240,16 +245,16 @@
       </svg>
           NextGen&nbsp;<em>STEM</em>
         </a>
-        <p class="foot__note">
-          Free in-person STEM competitions and a free-kit fellowship.
+        <p class="foot__note" data-text="site.footnote">
+          Free in-person STEM competitions. One topic, ninety minutes,
+          and the numbers decide it.
         </p>
       </div>
       <div class="foot__col">
-        <h4>Products</h4>
+        <h4>What we do</h4>
         <ul>
           <li><a href="competitions.html">Competitions</a></li>
           <li><a href="events.html">Events</a></li>
-          <li><a href="https://form.jotform.com/262548966626170" target="_blank" rel="noopener">Apply for a kit</a></li>
         </ul>
       </div>
       <div class="foot__col">
@@ -263,7 +268,6 @@
         <h4>Contact</h4>
         <ul>
           <li><a href="mailto:nextgenstem42@gmail.com">nextgenstem42@gmail.com</a></li>
-          <li><a href="https://form.jotform.com/262548966626170" target="_blank" rel="noopener">Apply for a fellowship</a></li>
         </ul>
       </div>
     </div>
@@ -274,7 +278,7 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=9"></script>
-<script src="js/content.js?v=10"></script>
+<script src="js/main.js?v=11"></script>
+<script src="js/content.js?v=11"></script>
 </body>
 </html>

@@ -136,3 +136,34 @@ body.admin { background: var(--paper-deep); }
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .toast.bad { background: var(--coral-ink); color: #fff; }
+
+/* --- text-slot panel ------------------------------------------------------
+   Slot types have no record list, so the middle column folds away. */
+body.single-pane .alist { display: none; }
+body.single-pane .alayout { grid-template-columns: 200px 1fr; }
+@media (max-width: 1000px) {
+  body.single-pane .alayout { grid-template-columns: 1fr; }
+}
+
+.ablurb {
+  font-size: .8125rem; color: var(--ink-mute);
+  margin: -.5rem 0 1.5rem; max-width: 56ch;
+}
+
+.agroup { border: 0; padding: 0; margin: 0 0 2rem; }
+.agroup legend {
+  font-family: var(--display);
+  font-size: .75rem; font-weight: 600; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--teal-deep);
+  padding: 0 0 .6rem; margin-bottom: .9rem;
+  border-bottom: 1px solid var(--rule); width: 100%;
+}
+
+.record-list .rflag {
+  font-size: .625rem; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--ink-mute); border: 1px solid var(--rule);
+  border-radius: 999px; padding: .1em .45em; margin-left: .5em;
+  vertical-align: .08em;
+}
+
+.aedit__head .link { white-space: nowrap; }

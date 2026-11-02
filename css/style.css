@@ -822,3 +822,12 @@ td .topic { font-family: var(--display); font-size: 1.0625rem; font-weight: 600;
   background: var(--card);
   white-space: nowrap;
 }
+
+/* --- admin-managed content ------------------------------------------------
+   Menu entries for pages added in the admin sit inside a wrapper, so
+   display:contents lets them lay out as if they were direct nav children. */
+.nav__extra { display: contents; }
+
+.prose--wide { max-width: 68ch; }
+.prose--wide > h2 { margin-top: 2rem; }
+.prose--wide > h2:first-child { margin-top: 0; }
