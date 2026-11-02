@@ -119,7 +119,7 @@
   }
 
   /* --------------------------------------------------------------- load */
-  function dataUrl(file) { return '../' + file + '?t=' + Date.now(); }
+  function dataUrl(file) { return '/' + file + '?t=' + Date.now(); }
 
   function loadAll() {
     var types = Object.keys(SCHEMA);
