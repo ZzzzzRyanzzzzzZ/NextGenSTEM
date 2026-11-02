@@ -46,7 +46,18 @@ async function putFile(repo, branch, path, content, sha, message, token) {
 
   if (!r.ok) {
     const j = await r.json().catch(() => ({}));
-    throw new Error(`Writing ${path}: GitHub ${r.status} ${j.message || ''}`.trim());
+    // A bare status code is not much help, so name the usual cause.
+    const hint = {
+      403: '. The token can read this repo but not write to it. Set its '
+         + 'Contents permission to "Read and write".',
+      404: '. Check GITHUB_REPO, and that the token lists this repository '
+         + 'under "Only select repositories".',
+      409: '. The file changed in GitHub since this page loaded it. '
+         + 'Reload the admin and make the edit again.',
+      422: '. GitHub rejected the commit, often a branch protection rule on '
+         + `${branch}.`
+    }[r.status] || '';
+    throw new Error(`Writing ${path}: GitHub ${r.status}${hint} ${j.message || ''}`.trim());
   }
   return r.json();
 }

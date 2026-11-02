@@ -236,7 +236,7 @@
         }).join('');
         return '<label class="afield"><span class="afield__label">' + esc(f.label) + star + '</span>' +
           '<select id="' + id + '" data-f="' + f.name + '">' +
-          '<option value="">' + (f.required ? '— choose —' : '— none —') + '</option>' + opts +
+          '<option value="">' + (f.required ? 'Choose…' : 'None') + '</option>' + opts +
           '</select>' + help + '</label>';
       }
       return '<label class="afield"><span class="afield__label">' + esc(f.label) + star + '</span>' +
@@ -246,7 +246,7 @@
 
     host.innerHTML =
       '<div class="aedit__head"><h2 class="h3">' + esc(rec[def.titleField] || 'New ' + def.label.toLowerCase()) + '</h2>' +
-      '<span class="fine">id: ' + esc(rec.id || '—') + '</span></div>' +
+      '<span class="fine">id: ' + esc(rec.id || 'not set') + '</span></div>' +
       '<form id="rec-form" autocomplete="off">' + fields + '</form>' +
       '<div class="aedit__foot">' +
         '<button id="dup-btn" class="btn btn--ghost btn--sm" type="button">Duplicate</button>' +
@@ -296,7 +296,7 @@
     var head = document.querySelector('.aedit__head .h3');
     var idEl = document.querySelector('.aedit__head .fine');
     if (head) head.textContent = rec[def.titleField] || 'New ' + def.label.toLowerCase();
-    if (idEl) idEl.textContent = 'id: ' + (rec.id || '—');
+    if (idEl) idEl.textContent = 'id: ' + (rec.id || 'not set');
     renderTypes(); renderList();
   });
 
