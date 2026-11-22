@@ -1,6 +1,6 @@
 (function () {
   // Google Sheet that collects registrations (Apps Script web app).
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbxRd77bMYv9S45zZO908QmxS7LA8aiZMs3O1ffKmXZwnagUUJxu9gMObuXVRydeQTu5/exec';
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbxpq4Qj4rxuhgIDDiqwSRM8IziEcoHnUSuwg5o4kC3FlLSd0Haz-BjRHO92nGT0LGs9/exec';
 
   var form = document.getElementById('reg');
   var status = document.getElementById('status');
