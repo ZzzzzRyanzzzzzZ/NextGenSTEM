@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register · NextGen STEM Hackathon</title>
+<meta name="description" content="Register for the NextGen STEM Hackathon, Saturday, November 28, 2026. Free for grades 9 to 12.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="bar">
+    <a class="home" href="/">&larr; NextGen STEM Hackathon</a>
+    <span class="when">Sat · Nov 28 · 2026</span>
+  </header>
+
+  <div class="formhead">
+    <p class="kicker">// registration</p>
+    <h1>Sign up</h1>
+    <p>Takes about two minutes. We'll email you a confirmation and the permission form your parent or guardian needs to sign.</p>
+  </div>
+
+  <form id="reg" novalidate>
+    <div class="hp" aria-hidden="true">
+      <label for="website">Leave this empty</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <fieldset>
+      <legend><span>01</span>You</legend>
+      <div class="fields">
+        <div><label for="first">First name</label><input type="text" id="first" name="first" autocomplete="given-name" required></div>
+        <div><label for="last">Last name</label><input type="text" id="last" name="last" autocomplete="family-name" required></div>
+        <div><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+        <div><label for="phone">Phone <small>(optional)</small></label><input type="tel" id="phone" name="phone" autocomplete="tel"></div>
+        <div><label for="school">School</label><input type="text" id="school" name="school" required></div>
+        <div>
+          <label for="grade">Grade</label>
+          <select id="grade" name="grade" required>
+            <option value="">Pick one</option>
+            <option>9</option><option>10</option><option>11</option><option>12</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>02</span>Coding</legend>
+      <div class="fields">
+        <div class="full">
+          <label id="exp-l">How much have you coded before?</label>
+          <div class="radios" role="radiogroup" aria-labelledby="exp-l">
+            <label><input type="radio" name="experience" value="Never" required>Never</label>
+            <label><input type="radio" name="experience" value="A little">A little</label>
+            <label><input type="radio" name="experience" value="A fair bit">A fair bit</label>
+            <label><input type="radio" name="experience" value="A lot">A lot</label>
+          </div>
+        </div>
+        <div class="full">
+          <label id="team-l">Team</label>
+          <div class="radios" role="radiogroup" aria-labelledby="team-l">
+            <label><input type="radio" name="team" value="Have a team" required>I have a team</label>
+            <label><input type="radio" name="team" value="Need a team">Help me find one</label>
+            <label><input type="radio" name="team" value="Solo">Going solo</label>
+          </div>
+        </div>
+        <div class="full"><label for="teammates">Teammates' names <small>(if you have a team, max 3 others)</small></label><input type="text" id="teammates" name="teammates"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>03</span>Parent / guardian</legend>
+      <div class="fields">
+        <div><label for="pname">Their name</label><input type="text" id="pname" name="parent_name" required></div>
+        <div><label for="pemail">Their email</label><input type="email" id="pemail" name="parent_email" required></div>
+        <div><label for="pphone">Emergency phone</label><input type="tel" id="pphone" name="parent_phone" required></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>04</span>On the day</legend>
+      <div class="fields">
+        <div><label for="diet">Food allergies or diet</label><input type="text" id="diet" name="diet" placeholder="e.g. vegetarian, nut allergy"></div>
+        <div class="full"><label for="heard">How did you hear about us? <small>(optional)</small></label><input type="text" id="heard" name="heard"></div>
+        <div class="full"><label for="notes">Anything else we should know? <small>(optional)</small></label><textarea id="notes" name="notes"></textarea></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>05</span>Fine print</legend>
+      <div class="fields">
+        <div class="full">
+          <label class="check"><input type="checkbox" name="conduct" value="yes" required><span>I've read and will follow the <a href="https://hackclub.com/conduct/" target="_blank" rel="noopener">Hack Club Code of Conduct</a>.</span></label>
+        </div>
+        <div class="full">
+          <label class="check"><input type="checkbox" name="photos" value="yes"><span>It's okay to use photos of me from the event.</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="submit">
+      <button class="btn" type="submit" id="send">Register &rarr;</button>
+      <p id="status" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+
+  <div class="done" id="done" hidden>
+    <h2>You're in.</h2>
+    <p class="lead">Thanks for signing up. Look out for an email from <a href="mailto:nextgenstem42@gmail.com">nextgenstem42@gmail.com</a> with the details. If you don't see it in a couple of days, check spam or write to us.</p>
+    <a class="btn" href="/">Back to the hackathon page</a>
+  </div>
+
+  <footer>
+    <span>NextGen STEM Hackathon · 2026</span>
+    <a href="mailto:nextgenstem42@gmail.com">nextgenstem42@gmail.com</a>
+  </footer>
+
+</div>
+<script src="/register.js"></script>
+</body>
+</html>

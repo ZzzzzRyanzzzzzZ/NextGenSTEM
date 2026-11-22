@@ -1,362 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NextGen STEM · free STEM competitions, kit included</title>
-<meta name="description" content="Free in-person STEM competitions. We hand you the kit at the door and give you ninety minutes and one brief.">
-<link rel="canonical" href="https://nextgenstem.vercel.app/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="NextGen STEM">
-<meta property="og:title" content="NextGen STEM · free STEM competitions, kit included">
-<meta property="og:description" content="Free in-person STEM competitions. We hand you the kit at the door and give you ninety minutes and one brief.">
-<meta property="og:url" content="https://nextgenstem.vercel.app/">
-<meta property="og:image" content="https://nextgenstem.vercel.app/img/share.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1a3a56">
+<title>NextGen STEM Hackathon · Nov 28, 2026</title>
+<meta name="description" content="A free, one-day hackathon for high schoolers in grades 9 to 12. Saturday, November 28, 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' fill='%231a3a56'/><g fill='none' stroke='%232a9d9c' stroke-width='1.5'><ellipse cx='12' cy='12' rx='4.5' ry='10.2'/><ellipse cx='12' cy='12' rx='4.5' ry='10.2' transform='rotate(60 12 12)'/><ellipse cx='12' cy='12' rx='4.5' ry='10.2' transform='rotate(120 12 12)'/></g><circle cx='12' cy='12' r='3' fill='%23f8836b'/></svg>">
-<noscript><style>.rv{opacity:1;transform:none}</style></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<!--
+  EVENT DETAILS TO FILL IN
+  Search this file for "TBA" and replace each one: venue, address and start/end time.
+  The schedule below is a draft. Change the times to match your real plan.
+-->
+<div class="wrap">
 
-<a class="skip" href="#main">Skip to content</a>
+  <header class="bar">
+    <a class="home" href="/">NextGen STEM</a>
+    <a class="go" href="/register">Register</a>
+  </header>
 
-<header class="masthead">
-  <div class="wrap masthead__in">
-    <a class="wordmark" href="index.html" aria-label="NextGen STEM, home">
-      <svg class="wordmark__mark" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-        <g fill="none" stroke="currentColor" stroke-width="1.35">
-          <ellipse cx="12" cy="12" rx="4.5" ry="10.2"></ellipse>
-          <ellipse cx="12" cy="12" rx="4.5" ry="10.2" transform="rotate(60 12 12)"></ellipse>
-          <ellipse cx="12" cy="12" rx="4.5" ry="10.2" transform="rotate(120 12 12)"></ellipse>
-        </g>
-        <g fill="var(--gold)">
-          <circle cx="16.7" cy="5.3" r="1.3"></circle>
-          <circle cx="7.3" cy="5.3" r="1.3"></circle>
-          <circle cx="7.3" cy="18.7" r="1.3"></circle>
-          <circle cx="16.7" cy="18.7" r="1.3"></circle>
-        </g>
-        <circle cx="12" cy="12" r="3" fill="var(--coral)"></circle>
-      </svg>
-      NextGen&nbsp;<em>STEM</em>
-    </a>
-
-    <nav class="nav" id="nav" aria-label="Primary">
-      <a href="competitions.html">Competitions</a>
-      <a href="events.html">Events</a>
-      <span class="nav__extra" data-content="nav-extra"></span>
-      <span class="nav__cta"><a class="btn btn--ghost" href="https://form.jotform.com/262548966626170" target="_blank" rel="noopener" data-text="site.cta.label" data-text-href="site.cta.url">Register</a></span>
-    </nav>
-
-    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">
-      <span></span>
-    </button>
-  </div>
-</header>
-
-<main id="main">
-
-  <!-- Hero ------------------------------------------------------------- -->
-  <section class="hero wrap">
-    <div class="grid">
-      <div class="hero__head">
-        <span class="eyebrow rv" data-text="home.eyebrow">Independent · Making things since 2024</span>
-        <h1 class="display rv" data-delay="60" data-text="home.hero.title">
-          Free STEM contests.<br>We hand you the <span class="serif-it accent">kit</span>.
-        </h1>
-        <div class="hero__sub rv" data-delay="140">
-          <p class="lede" data-text="home.hero.lede">
-            You get a box of parts and ninety minutes. No instructions.
-            Nothing to buy, nothing to bring.
-          </p>
-          <div class="hero__actions">
-            <a class="btn btn--solid" href="#how">How it works <span class="arw" aria-hidden="true">→</span></a>
-            <a class="btn btn--ghost" href="competitions.html#calendar">See the calendar</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero__side rv" data-delay="220">
-        <nav class="index-list" aria-label="What we make">
-          <a href="competitions.html"><span class="num">01</span> Competitions <span data-content="next-comp">see dates</span></a>
-        </nav>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats ------------------------------------------------------------ -->
-  <section class="wrap" aria-label="By the numbers">
-    <dl class="statbar rv">
-      <div>
-        <dt>Fields to compete in</dt>
-        <dd>6</dd>
-      </div>
-      <div>
-        <dt>Instructions in the box</dt>
-        <dd>0</dd>
-      </div>
-      <div>
-        <dt>Cost to enter</dt>
-        <dd>0</dd>
-      </div>
-      <div>
-        <dt>Topics per competition</dt>
-        <dd>1</dd>
-      </div>
-    </dl>
-  </section>
-
-  <!-- How it works ------------------------------------------------------ -->
-  <section class="wrap section--tight" id="how">
-    <div class="grid section-intro">
-      <div class="split__left">
-        <span class="eyebrow">How it works</span>
-        <h2 class="h2" data-text="home.how.title">Turn up.<br>We hand you<br>the <span class="serif-it accent">kit</span>.</h2>
-      </div>
-      <div class="split__right">
-        <p class="prose" data-text="home.how.lede">
-          Everyone in your field gets the same box on the day. What you
-          build with it is the contest. The box is yours to keep.
-        </p>
-      </div>
+  <div class="hero">
+    <div>
+      <p class="kicker">// a hackathon for high schoolers</p>
+      <h1>NextGen STEM <span class="mark">Hackathon</span></h1>
+      <p class="blurb">One day to build something that works. Bring a laptop and an idea, or just the laptop. Come solo or bring friends. It doesn't cost anything.</p>
+      <a class="btn" href="/register">Sign up &rarr;</a>
     </div>
 
-    <ol class="timeline rv">
-      <li>
-        <span class="when">Before</span>
-        <div>
-          <h3>Register, free</h3>
-          <p>Pick a date and a field. It is free and you do not need a school.</p>
-        </div>
-      </li>
-      <li>
-        <span class="when">On the day</span>
-        <div>
-          <h3>Show up</h3>
-          <p>Everything you need is on the table.</p>
-        </div>
-      </li>
-      <li>
-        <span class="when">At the door</span>
-        <div>
-          <h3>Collect your kit</h3>
-          <p>The same box everyone else gets. No instructions. Yours to keep.</p>
-        </div>
-      </li>
-      <li>
-        <span class="when">90 minutes</span>
-        <div>
-          <h3>Build to the brief</h3>
-          <p>One rule, one thing to measure. How you do it is up to you.</p>
-        </div>
-      </li>
-      <li>
-        <span class="when">Same day</span>
-        <div>
-          <h3>Judged on the numbers</h3>
-          <p>You are only judged against your own field. Feedback comes within two weeks.</p>
-        </div>
-      </li>
-    </ol>
-  </section>
-
-  <section class="wrap section--tight" id="what">
-    <!-- 01 Competitions ------------------------------------------------ -->
-    <article class="feature grid rv">
-      <div class="feature__meta">
-        <span class="num">01 · Competitions</span>
-        <p class="mute sm">Grades 7–12<br>Free to enter<br>90 minutes, one topic</p>
-      </div>
-
-      <div class="feature__body">
-        <h2 class="h2">One topic.<br>Properly.</h2>
-        <div class="prose">
-          <p>
-            A whole contest on one topic. Not biology, the cell. Not calculus, integrals.
-          </p>
-          <p>
-            Ninety minutes, in person, same kit for everyone. The numbers decide it.
-          </p>
-        </div>
-        <div class="tag-row">
-          <span class="tag">The Cell</span>
-          <span class="tag">Integrals</span>
-          <span class="tag">Static equilibrium</span>
-          <span class="tag">Titration</span>
-          <span class="tag">Graph theory</span>
-        </div>
-        <a class="link" href="competitions.html">See the 2026–27 calendar <span class="arw" aria-hidden="true">→</span></a>
-      </div>
-
-      <figure class="feature__art art-frame">
-        <svg viewBox="0 0 300 200" role="img" aria-label="Diagram: a narrow shaft cutting down through layers of a subject">
-          <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
-            <!-- strata -->
-            <path d="M20 34 h260" stroke-dasharray="2 6" opacity=".8"></path>
-            <path d="M20 70 h260" stroke-dasharray="2 6" opacity=".65"></path>
-            <path d="M20 106 h260" stroke-dasharray="2 6" opacity=".5"></path>
-            <path d="M20 142 h260" stroke-dasharray="2 6" opacity=".38"></path>
-            <path d="M20 178 h260" stroke-dasharray="2 6" opacity=".26"></path>
-            <!-- surface skim -->
-            <path d="M26 26 h248" stroke-width="1.6"></path>
-            <path d="M40 26 v-8 M80 26 v-8 M120 26 v-8 M160 26 v-8 M200 26 v-8 M240 26 v-8" opacity=".45"></path>
-            <!-- the shaft -->
-            <path d="M138 26 v152" stroke-width="1.6"></path>
-            <path d="M162 26 v152" stroke-width="1.6"></path>
-            <path d="M138 178 L150 192 L162 178"></path>
-          </g>
-          <g fill="currentColor">
-            <circle cx="150" cy="34" r="2.6"></circle>
-            <circle cx="150" cy="70" r="2.6"></circle>
-            <circle cx="150" cy="106" r="2.6"></circle>
-            <circle cx="150" cy="142" r="2.6"></circle>
-          </g>
-          <g fill="var(--ink-mute)" font-family="Archivo, sans-serif" font-size="7.5" letter-spacing="1">
-            <text x="176" y="37">DEFINITION</text>
-            <text x="176" y="73">MECHANISM</text>
-            <text x="176" y="109">EDGE CASE</text>
-            <text x="176" y="145">OPEN QUESTION</text>
-          </g>
-        </svg>
-        <figcaption>Coverage runs across. We go down.</figcaption>
-      </figure>
-    </article>
-  </section>
-
-  <!-- Approach ---------------------------------------------------------- -->
-  <section class="section section--ink" id="approach">
-    <div class="wrap">
-      <div class="grid section-intro">
-        <div class="split__left">
-          <span class="eyebrow">The argument</span>
-          <p class="pull" data-text="home.pull">
-            Instructions tell you someone already knows the answer.
-          </p>
-        </div>
-        <div class="split__right">
-          <div class="prose">
-            <p>
-              A kit with a manual has one right answer. We would rather give you parts, one rule, and get out of the way.
-            </p>
-            <p>
-              Four rules we build everything around.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rv">
-        <div class="principle">
-          <div class="principle__row">
-            <span class="num">01</span>
-            <h3>Ship the constraint, not the solution</h3>
-            <p>
-              Every kit gives you a limit. How you work inside it is up to you.
-            </p>
-          </div>
-        </div>
-        <div class="principle">
-          <div class="principle__row">
-            <span class="num">02</span>
-            <h3>Make it measurable, or don't ship it</h3>
-            <p>
-              If you cannot put a number on it, you cannot tell if it got better.
-            </p>
-          </div>
-        </div>
-        <div class="principle">
-          <div class="principle__row">
-            <span class="num">03</span>
-            <h3>Depth beats coverage, every time</h3>
-            <p>
-              Forty topics skimmed teaches recall. One topic pushed hard teaches thinking.
-            </p>
-          </div>
-        </div>
-        <div class="principle">
-          <div class="principle__row">
-            <span class="num">04</span>
-            <h3>Failure is a data point, not a defect</h3>
-            <p>
-              Parts are cheap on purpose. A bridge that breaks at 4.2 kg tells you more than one you never tested.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sections added through the admin land here. -->
-  <div data-content="sections" data-page="home"></div>
-
-</main>
-
-<!-- Footer -------------------------------------------------------------- -->
-<footer class="foot" id="contact">
-  <div class="wrap">
-    <div class="grid">
-      <div class="foot__brand">
-        <a class="wordmark" href="index.html">
-          <svg class="wordmark__mark" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-        <g fill="none" stroke="currentColor" stroke-width="1.35">
-          <ellipse cx="12" cy="12" rx="4.5" ry="10.2"></ellipse>
-          <ellipse cx="12" cy="12" rx="4.5" ry="10.2" transform="rotate(60 12 12)"></ellipse>
-          <ellipse cx="12" cy="12" rx="4.5" ry="10.2" transform="rotate(120 12 12)"></ellipse>
-        </g>
-        <g fill="var(--gold)">
-          <circle cx="16.7" cy="5.3" r="1.3"></circle>
-          <circle cx="7.3" cy="5.3" r="1.3"></circle>
-          <circle cx="7.3" cy="18.7" r="1.3"></circle>
-          <circle cx="16.7" cy="18.7" r="1.3"></circle>
-        </g>
-        <circle cx="12" cy="12" r="3" fill="var(--coral)"></circle>
-      </svg>
-          NextGen&nbsp;<em>STEM</em>
-        </a>
-        <p class="foot__note" data-text="site.footnote">
-          Free in-person STEM competitions. One topic, ninety minutes,
-          and the numbers decide it.
-        </p>
-      </div>
-
-      <div class="foot__col">
-        <h4>What we do</h4>
-        <ul>
-          <li><a href="competitions.html">Competitions</a></li>
-          <li><a href="events.html">Events</a></li>
-        </ul>
-      </div>
-
-      <div class="foot__col">
-        <h4>For schools</h4>
-        <ul>
-          <li><a href="competitions.html#run">Host a round</a></li>
-          <li><a href="competitions.html#rules">Rules &amp; eligibility</a></li>
-        </ul>
-      </div>
-
-      <div class="foot__col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:nextgenstem42@gmail.com">nextgenstem42@gmail.com</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="foot__bar">
-      <span>© 2026 NextGen STEM</span>
-      <span>Built in the open · Repairable by design</span>
+    <div class="ticket" aria-label="Event details">
+      <span class="sticker">Free</span>
+      <span class="big">SAT · NOV 28 · 2026</span>
+      <div><span>Who</span><b>Grades 9–12</b></div>
+      <div><span>Where</span><b>Venue TBA</b></div>
+      <div><span>Time</span><b>TBA</b></div>
+      <div><span>Teams</span><b>1–4 people</b></div>
+      <div><span>Cost</span><b>$0</b></div>
     </div>
   </div>
-</footer>
 
-<script src="js/main.js?v=11"></script>
-<script src="js/content.js?v=11"></script>
+  <section class="part" id="about">
+    <h2><span>01</span>What it is</h2>
+    <div>
+      <p class="lead">You show up in the morning with nothing and leave with a project you made.</p>
+      <p>A hackathon is a day where you team up, pick a problem and build something for it: a website, an app, a game, a robot, a tool you actually wish existed. It doesn't have to be finished or polished. It has to be yours.</p>
+      <p>You don't need to know how to code already. If you've never written a line, come anyway. There'll be people around to help you get started, and plenty of first-timers in the room.</p>
+      <p>NextGen STEM is run by high school students. We put this together because we wanted one near us.</p>
+    </div>
+  </section>
+
+  <section class="part" id="schedule">
+    <h2><span>02</span>The day</h2>
+    <div>
+      <table class="sched">
+        <tr><td>9:00</td><td>Doors open, check in, find a seat</td></tr>
+        <tr><td>9:30</td><td>Kickoff. Rules, theme and team forming for anyone without one</td></tr>
+        <tr><td>10:00</td><td>Hacking starts</td></tr>
+        <tr><td>12:30</td><td>Lunch</td></tr>
+        <tr><td>4:00</td><td>Stop building. Get your demo ready</td></tr>
+        <tr><td>4:30</td><td>Demos. Every team gets a couple of minutes to show what they made</td></tr>
+        <tr><td>5:30</td><td>Awards, then home</td></tr>
+      </table>
+      <p class="note">Times may shift a little. We'll email everyone who registers with the final schedule.</p>
+    </div>
+  </section>
+
+  <section class="part" id="bring">
+    <h2><span>03</span>What to bring</h2>
+    <div>
+      <ul class="plain">
+        <li>A laptop and its charger</li>
+        <li>A school or student ID</li>
+        <li>A signed permission form (we'll email it to you after you register)</li>
+        <li>A water bottle and anything you need to be comfortable for the day</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="part" id="faq">
+    <h2><span>04</span>Questions</h2>
+    <div>
+      <details>
+        <summary>Who can come?</summary>
+        <p>Any high school student in grades 9 through 12. You don't need to be from a particular school.</p>
+      </details>
+      <details>
+        <summary>Does it cost anything?</summary>
+        <p>No. Registering and attending are both free.</p>
+      </details>
+      <details>
+        <summary>I've never coded. Is this for me?</summary>
+        <p>Yes. Lots of people at hackathons are beginners. Pick something small, ask questions and learn as you go. That's the point of the day.</p>
+      </details>
+      <details>
+        <summary>Do I need a team?</summary>
+        <p>No. Teams are up to four people. If you don't have one, tell us on the form and we'll help you find one at kickoff. You can also work alone.</p>
+      </details>
+      <details>
+        <summary>Can I start my project before the day?</summary>
+        <p>You can think about ideas all you want, but the building itself has to happen during the event. That keeps it fair for everyone.</p>
+      </details>
+      <details>
+        <summary>What are the rules?</summary>
+        <p>Be kind, build your own work, and follow the <a href="https://hackclub.com/conduct/" target="_blank" rel="noopener">Hack Club Code of Conduct</a>. Anyone who doesn't will be asked to leave.</p>
+      </details>
+      <details>
+        <summary>My parents have questions.</summary>
+        <p>Have them email us at <a href="mailto:nextgenstem42@gmail.com">nextgenstem42@gmail.com</a>. We're happy to talk.</p>
+      </details>
+    </div>
+  </section>
+
+  <div class="end">
+    <h2>Come build<br>something.</h2>
+    <a class="btn" href="/register">Register for the hackathon &rarr;</a>
+  </div>
+
+  <footer>
+    <span>NextGen STEM Hackathon · 2026</span>
+    <a href="mailto:nextgenstem42@gmail.com">nextgenstem42@gmail.com</a>
+  </footer>
+
+</div>
 </body>
 </html>
