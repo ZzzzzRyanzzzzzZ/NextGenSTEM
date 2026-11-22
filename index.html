@@ -3,127 +3,125 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NextGen STEM Hackathon · Nov 28, 2026</title>
-<meta name="description" content="A free, one-day hackathon for high schoolers in grades 9 to 12. Saturday, November 28, 2026.">
+<title>NextGen STEM Hackathon · Register</title>
+<meta name="description" content="Register for the NextGen STEM Hackathon, Saturday, November 28, 2026. Free for grades 9 to 12.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<!--
-  EVENT DETAILS TO FILL IN
-  Search this file for "TBA" and replace each one: venue, address and start/end time.
-  The schedule below is a draft. Change the times to match your real plan.
--->
+<!-- Replace "TBA" below with the venue and time once they're set. -->
 <div class="wrap">
 
-  <header class="bar">
-    <a class="home" href="/">NextGen STEM</a>
-    <a class="go" href="/register">Register</a>
-  </header>
-
-  <div class="hero">
-    <div>
-      <p class="kicker">// a hackathon for high schoolers</p>
-      <h1>NextGen STEM <span class="mark">Hackathon</span></h1>
-      <p class="blurb">One day to build something that works. Bring a laptop and an idea, or just the laptop. Come solo or bring friends. It doesn't cost anything.</p>
-      <a class="btn" href="/register">Sign up &rarr;</a>
-    </div>
-
-    <div class="ticket" aria-label="Event details">
-      <span class="sticker">Free</span>
-      <span class="big">SAT · NOV 28 · 2026</span>
-      <div><span>Who</span><b>Grades 9–12</b></div>
-      <div><span>Where</span><b>Venue TBA</b></div>
-      <div><span>Time</span><b>TBA</b></div>
-      <div><span>Teams</span><b>1–4 people</b></div>
-      <div><span>Cost</span><b>$0</b></div>
-    </div>
+  <div class="formhead">
+    <p class="kicker">Registration</p>
+    <h1>NextGen STEM Hackathon</h1>
+    <ul class="facts">
+      <li>Sat, Nov 28, 2026</li>
+      <li>Grades 9–12</li>
+      <li>Free</li>
+      <li>Venue TBA</li>
+      <li>Time TBA</li>
+    </ul>
+    <p>Fill this out to save your spot. It takes about two minutes. Never coded before? Sign up anyway.</p>
   </div>
 
-  <section class="part" id="about">
-    <h2><span>01</span>What it is</h2>
-    <div>
-      <p class="lead">You show up in the morning with nothing and leave with a project you made.</p>
-      <p>A hackathon is a day where you team up, pick a problem and build something for it: a website, an app, a game, a robot, a tool you actually wish existed. It doesn't have to be finished or polished. It has to be yours.</p>
-      <p>You don't need to know how to code already. If you've never written a line, come anyway. There'll be people around to help you get started, and plenty of first-timers in the room.</p>
-      <p>NextGen STEM is run by high school students. We put this together because we wanted one near us.</p>
+  <form id="reg" novalidate>
+    <div class="hp" aria-hidden="true">
+      <label for="website">Leave this empty</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
     </div>
-  </section>
 
-  <section class="part" id="schedule">
-    <h2><span>02</span>The day</h2>
-    <div>
-      <table class="sched">
-        <tr><td>9:00</td><td>Doors open, check in, find a seat</td></tr>
-        <tr><td>9:30</td><td>Kickoff. Rules, theme and team forming for anyone without one</td></tr>
-        <tr><td>10:00</td><td>Hacking starts</td></tr>
-        <tr><td>12:30</td><td>Lunch</td></tr>
-        <tr><td>4:00</td><td>Stop building. Get your demo ready</td></tr>
-        <tr><td>4:30</td><td>Demos. Every team gets a couple of minutes to show what they made</td></tr>
-        <tr><td>5:30</td><td>Awards, then home</td></tr>
-      </table>
-      <p class="note">Times may shift a little. We'll email everyone who registers with the final schedule.</p>
+    <fieldset>
+      <legend><span>01</span>You</legend>
+      <div class="fields">
+        <div><label for="first">First name</label><input type="text" id="first" name="first" autocomplete="given-name" required></div>
+        <div><label for="last">Last name</label><input type="text" id="last" name="last" autocomplete="family-name" required></div>
+        <div><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+        <div><label for="phone">Phone <small>(optional)</small></label><input type="tel" id="phone" name="phone" autocomplete="tel"></div>
+        <div><label for="school">School</label><input type="text" id="school" name="school" required></div>
+        <div>
+          <label for="grade">Grade</label>
+          <select id="grade" name="grade" required>
+            <option value="">Pick one</option>
+            <option>9</option><option>10</option><option>11</option><option>12</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>02</span>Coding</legend>
+      <div class="fields">
+        <div class="full">
+          <label id="exp-l">How much have you coded before?</label>
+          <div class="radios" role="radiogroup" aria-labelledby="exp-l">
+            <label><input type="radio" name="experience" value="Never" required>Never</label>
+            <label><input type="radio" name="experience" value="A little">A little</label>
+            <label><input type="radio" name="experience" value="A fair bit">A fair bit</label>
+            <label><input type="radio" name="experience" value="A lot">A lot</label>
+          </div>
+        </div>
+        <div class="full">
+          <label id="team-l">Team</label>
+          <div class="radios" role="radiogroup" aria-labelledby="team-l">
+            <label><input type="radio" name="team" value="Have a team" required>I have a team</label>
+            <label><input type="radio" name="team" value="Need a team">Help me find one</label>
+            <label><input type="radio" name="team" value="Solo">Going solo</label>
+          </div>
+        </div>
+        <div class="full"><label for="teammates">Teammates' names <small>(if you have a team, max 3 others)</small></label><input type="text" id="teammates" name="teammates"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>03</span>Parent / guardian</legend>
+      <div class="fields">
+        <div><label for="pname">Their name</label><input type="text" id="pname" name="parent_name" required></div>
+        <div><label for="pemail">Their email</label><input type="email" id="pemail" name="parent_email" required></div>
+        <div><label for="pphone">Emergency phone</label><input type="tel" id="pphone" name="parent_phone" required></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>04</span>On the day</legend>
+      <div class="fields">
+        <div><label for="diet">Food allergies or diet</label><input type="text" id="diet" name="diet" placeholder="e.g. vegetarian, nut allergy"></div>
+        <div class="full"><label for="heard">How did you hear about us? <small>(optional)</small></label><input type="text" id="heard" name="heard"></div>
+        <div class="full"><label for="notes">Anything else we should know? <small>(optional)</small></label><textarea id="notes" name="notes"></textarea></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><span>05</span>Fine print</legend>
+      <div class="fields">
+        <div class="full">
+          <label class="check"><input type="checkbox" name="conduct" value="yes" required><span>I've read and will follow the <a href="https://hackclub.com/conduct/" target="_blank" rel="noopener">Hack Club Code of Conduct</a>.</span></label>
+        </div>
+        <div class="full">
+          <label class="check"><input type="checkbox" name="photos" value="yes"><span>It's okay to use photos of me from the event.</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="submit">
+      <button class="btn" type="submit" id="send">Register &rarr;</button>
+      <p id="status" role="status" aria-live="polite"></p>
     </div>
-  </section>
+  </form>
 
-  <section class="part" id="bring">
-    <h2><span>03</span>What to bring</h2>
-    <div>
-      <ul class="plain">
-        <li>A laptop and its charger</li>
-        <li>A school or student ID</li>
-        <li>A signed permission form (we'll email it to you after you register)</li>
-        <li>A water bottle and anything you need to be comfortable for the day</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="part" id="faq">
-    <h2><span>04</span>Questions</h2>
-    <div>
-      <details>
-        <summary>Who can come?</summary>
-        <p>Any high school student in grades 9 through 12. You don't need to be from a particular school.</p>
-      </details>
-      <details>
-        <summary>Does it cost anything?</summary>
-        <p>No. Registering and attending are both free.</p>
-      </details>
-      <details>
-        <summary>I've never coded. Is this for me?</summary>
-        <p>Yes. Lots of people at hackathons are beginners. Pick something small, ask questions and learn as you go. That's the point of the day.</p>
-      </details>
-      <details>
-        <summary>Do I need a team?</summary>
-        <p>No. Teams are up to four people. If you don't have one, tell us on the form and we'll help you find one at kickoff. You can also work alone.</p>
-      </details>
-      <details>
-        <summary>Can I start my project before the day?</summary>
-        <p>You can think about ideas all you want, but the building itself has to happen during the event. That keeps it fair for everyone.</p>
-      </details>
-      <details>
-        <summary>What are the rules?</summary>
-        <p>Be kind, build your own work, and follow the <a href="https://hackclub.com/conduct/" target="_blank" rel="noopener">Hack Club Code of Conduct</a>. Anyone who doesn't will be asked to leave.</p>
-      </details>
-      <details>
-        <summary>My parents have questions.</summary>
-        <p>Have them email us at <a href="mailto:nextgenstem42@gmail.com">nextgenstem42@gmail.com</a>. We're happy to talk.</p>
-      </details>
-    </div>
-  </section>
-
-  <div class="end">
-    <h2>Come build<br>something.</h2>
-    <a class="btn" href="/register">Register for the hackathon &rarr;</a>
-  </div>
+  <div class="done" id="done" hidden>
+    <h2>You're in.</h2>
+    <p class="lead">Thanks for signing up. Look out for an email from <a href="mailto:nextgenstem42@gmail.com">nextgenstem42@gmail.com</a> with the details. If you don't see it in a couple of days, check spam or write to us.</p>
+      </div>
 
   <footer>
-    <span>NextGen STEM Hackathon · 2026</span>
+    <span>Questions?</span>
     <a href="mailto:nextgenstem42@gmail.com">nextgenstem42@gmail.com</a>
   </footer>
 
 </div>
+<script src="/register.js"></script>
 </body>
 </html>
