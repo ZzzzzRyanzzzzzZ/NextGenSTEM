@@ -42,12 +42,12 @@
       first: 'First name', last: 'Last name', phone: 'Phone',
       school: 'School', grade: 'Grade', experience: 'Coding experience',
       team: 'Team', teammates: 'Teammates', parent_name: 'Parent/guardian',
-      parent_email: 'Parent email', parent_phone: 'Emergency phone',
+      parent_email: 'Parent email',
       heard: 'Heard about us from', notes: 'Notes',
-      conduct: 'Agreed to Code of Conduct', photos: 'Photo consent'
+      conduct: 'Agreed to Code of Conduct'
     };
     var out = {};
-    Object.keys(labels).forEach(function (k) { out[labels[k]] = data[k] || (k === 'photos' ? 'no' : ''); });
+    Object.keys(labels).forEach(function (k) { out[labels[k]] = data[k] || ''; });
 
     out.email = data.email;
     out._subject = 'Hackathon registration: ' + data.first + ' ' + data.last;
