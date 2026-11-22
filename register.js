@@ -17,13 +17,55 @@
     window.scrollTo(0, 0);
   }
 
+  // The visible question for a field, e.g. "Grade" or "Team".
+  function fieldName(el) {
+    var group = el.closest('.radios');
+    var label = group ? document.getElementById(group.getAttribute('aria-labelledby'))
+      : el.type === 'checkbox' ? null
+      : form.querySelector('label[for="' + el.id + '"]');
+    if (el.type === 'checkbox') return 'the Code of Conduct box';
+    if (!label) return el.name;
+    var t = label.cloneNode(true);
+    t.querySelectorAll('small').forEach(function (s) { s.remove(); });
+    return t.textContent.trim();
+  }
+
+  // Clear a field's red mark as soon as it's fixed.
+  form.addEventListener('input', function (e) {
+    var g = e.target.closest('.radios');
+    if (g) g.classList.remove('missing');
+  });
+  form.addEventListener('change', function (e) {
+    var g = e.target.closest('.radios');
+    if (g) g.classList.remove('missing');
+  });
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    var bad = form.querySelector(':invalid');
-    if (bad) {
-      say('A few things are missing. Check the highlighted field.', true);
-      bad.focus();
+    // Trim spaces first so "  " doesn't count as filled in.
+    form.querySelectorAll('input[type=text], input[type=email], input[type=tel], textarea').forEach(function (el) {
+      el.value = el.value.trim();
+    });
+
+    form.classList.add('tried');
+    var bad = Array.prototype.filter.call(form.elements, function (el) {
+      return el.willValidate && !el.checkValidity();
+    });
+    // Mark radio groups as a whole, since only one radio carries "required".
+    form.querySelectorAll('.radios').forEach(function (g) {
+      g.classList.toggle('missing', !!g.querySelector('input:invalid'));
+    });
+
+    if (bad.length) {
+      var names = [];
+      bad.forEach(function (el) {
+        var name = fieldName(el);
+        if (names.indexOf(name) < 0) names.push(name);
+      });
+      var emailWrong = bad.some(function (el) { return el.type === 'email' && el.value; });
+      say((emailWrong ? 'Check the email address. ' : '') + 'Still needed: ' + names.join(', ') + '.', true);
+      bad[0].focus();
       return;
     }
 

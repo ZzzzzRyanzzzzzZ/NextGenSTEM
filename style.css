@@ -112,3 +112,10 @@ footer {
   fieldset { grid-template-columns: 1fr; gap: 14px; }
   fieldset .fields { grid-template-columns: 1fr; }
 }
+
+/* After a submit attempt, mark what's still missing */
+.tried input:not([type=radio]):not([type=checkbox]):invalid, .tried select:invalid, .tried textarea:invalid {
+  border-color: var(--coral); box-shadow: 0 0 0 2px var(--coral);
+}
+.radios.missing label { border-color: var(--coral); }
+.tried .check input:invalid { outline: 3px solid var(--coral); outline-offset: 2px; }
